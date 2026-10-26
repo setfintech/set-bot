@@ -78,17 +78,25 @@ ${legal(x.hh, "#0E5A2C", 140).replace('class="legal" style="', 'class="legal" st
 // D05 · camiseta de fútbol (Chile → Colombia)
 const c05 = `.bg{position:absolute;inset:0;background:linear-gradient(180deg,#1b6b2f 0%,#24813a 100%)}
 .field{position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.05) 0 120px,transparent 120px 240px)}
-.h{position:absolute;left:80px;right:80px;top:240px;font-size:72px;line-height:1.08}.h b{color:#FCD116}
-.jersey{position:absolute;left:190px;top:520px;width:700px;height:760px}
-.jt{position:absolute;left:190px;top:700px;width:700px;text-align:center;color:#003893}
-.jt small{display:block;font-size:44px;letter-spacing:.2em}.jt b{display:block;font-size:112px;line-height:1;margin-top:14px}
-.cap{position:absolute;left:80px;right:80px;top:1320px;text-align:center;font-size:40px}.cap b{color:#FCD116}`;
+.h{position:absolute;left:80px;right:80px;top:240px;font-size:68px;line-height:1.08}.h b{color:#FCD116}
+.jersey{position:absolute;top:520px;width:430px;height:467px;filter:drop-shadow(0 18px 24px rgba(0,0,0,.3))}
+.jn{position:absolute;top:1000px;width:430px;text-align:center;font-size:38px;letter-spacing:.12em}
+.card{position:absolute;left:110px;right:110px;top:1110px;background:#FFF9EC;border-radius:36px;padding:34px 30px 30px;text-align:center;color:#187D41;box-shadow:0 18px 36px rgba(0,40,15,.3)}
+.card .pair{display:flex;justify-content:center;align-items:center;gap:16px}
+.card small{display:block;font-size:30px;color:#3b6b48}.card b.r{display:block;font-size:92px;line-height:1;margin:14px 0 8px;color:#00913E}
+.cap{position:absolute;left:80px;right:80px;top:1480px;text-align:center;font-size:40px}.cap b{color:#FCD116}`;
+const jersey = (l, body, trim, collar, crest) => `<svg class="jersey" style="left:${l}px" viewBox="0 0 700 760"><path d="M220 20 L140 40 L10 170 L110 290 L170 240 L170 740 L530 740 L530 240 L590 290 L690 170 L560 40 L480 20 C 450 80, 250 80, 220 20 Z" fill="${body}" stroke="${trim}" stroke-width="10"/><path d="M10 170 L110 290" stroke="${trim}" stroke-width="30"/><path d="M690 170 L590 290" stroke="${trim}" stroke-width="30"/><path d="M220 20 C 250 80, 450 80, 480 20" fill="none" stroke="${collar}" stroke-width="20"/><rect x="170" y="690" width="360" height="22" fill="${trim}"/>${crest}</svg>`;
+const escudo = (fill, extra) => `<g transform="translate(300 150) scale(1.5)"><path d="M0 0 H60 V50 Q60 85 30 100 Q0 85 0 50 Z" fill="${fill}" stroke="#fff" stroke-width="5"/>${extra}</g>`;
+const crestCL = escudo("#fff", `<path d="M0 0 H60 V45 H0 Z" fill="#0039A6"/><path d="M0 45 H60 V50 Q60 85 30 100 Q0 85 0 50 Z" fill="#D52B1E"/><path d="M30 8 L34 20 L47 20 L37 28 L41 40 L30 33 L19 40 L23 28 L13 20 L26 20 Z" fill="#fff"/>`);
+const crestCO = escudo("#FCD116", `<path d="M0 50 Q0 85 30 100 Q60 85 60 50 Z" fill="#CE1126"/><path d="M0 25 H60 V50 H0 Z" fill="#003893"/><text x="30" y="19" text-anchor="middle" font-size="16" font-weight="700" fill="#003893" font-family="Comfortaa">FCF</text><circle cx="30" cy="38" r="8" fill="#FCD116"/>`);
 export const D05 = (x) => { const c = CORR.CLCO, r = x.R.CLCO; return page(1080, 1920, c05, `<div class="bg"></div><div class="field"></div>
-<div class="h">La camiseta de hoy: <b>Chile → Colombia</b> ⚽</div>
-<svg class="jersey" viewBox="0 0 700 760"><path d="M220 20 L140 40 L10 170 L110 290 L170 240 L170 740 L530 740 L530 240 L590 290 L690 170 L560 40 L480 20 C 450 80, 250 80, 220 20 Z" fill="#FCD116" stroke="#e0b800" stroke-width="8"/><path d="M220 20 C 250 80, 450 80, 480 20" fill="none" stroke="#003893" stroke-width="18"/><rect x="170" y="690" width="360" height="22" fill="#CE1126"/></svg>
-<div class="jt"><small>TASA</small><b class="num">${rateTxt(x.Rs.CLCO)}</b><small style="font-size:30px;letter-spacing:.06em;margin-top:14px">COP por 1 CLP · ${x.hh}</small></div>
+<div class="h">Las camisetas de hoy: <b>Chile → Colombia</b> ⚽</div>
+${jersey(80, "#D52B1E", "#fff", "#0039A6", crestCL)}
+${jersey(570, "#FCD116", "#003893", "#CE1126", crestCO)}
+<div class="jn" style="left:80px">CHILE · FFCh</div><div class="jn" style="left:570px">COLOMBIA · FCF</div>
+<div class="card"><div class="pair">${sqFlag("CL", 80)}${chev()}${sqFlag("CO", 80)}</div><small>TASA de las ${x.hh}</small><b class="r num">${rateTxt(x.Rs.CLCO)}</b><small>COP por 1 CLP</small></div>
 <div class="cap">${amtA(c, 100000)} → <b class="num">${recv(c, r, 100000)}</b></div>
-${foot(1450)}${legal(x.hh, "#e3f2e6", 150)}`); };
+${foot(1600)}${legal(x.hh, "#e3f2e6", 150)}`); };
 
 // D06 · velocímetro (Perú → Venezuela)
 const c06 = `.bg{position:absolute;inset:0;background:#111A15}
