@@ -24,3 +24,4 @@ Cuando el usuario pide una corrección desde Telegram, un workflow te pasa: la *
 ## Mapa de piezas de la muestra
 Juego A (miércoles): T01→S01 · T02→S02 · T03→S03 · T04→S04 · T05→S05 · T06→S06 · T07→S07 · T08→S08 · T09→S09 · T10→S10 · TF1→F1 · TF2→F2
 Juego B (jueves): B01…B10 → función del mismo nombre en src/disenos_b.mjs
+Juego C (viernes): C01…C10 y el feed F3 → funciones del mismo nombre en src/disenos_c.mjs

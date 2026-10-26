@@ -3,7 +3,9 @@ import fs from "node:fs";
 import { getAll, getRate } from "./data.mjs";
 import { STORIES as SA, FEEDS } from "./disenos.mjs";
 import { STORIES_B } from "./disenos_b.mjs";
-const STORIES = { ...SA, ...STORIES_B };
+import { STORIES_C, FEEDS_C } from "./disenos_c.mjs";
+const STORIES = { ...SA, ...STORIES_B, ...STORIES_C };
+Object.assign(FEEDS, FEEDS_C);
 import { renderPage, closeBrowser } from "./render.mjs";
 
 const HORAS = new Proxy({}, { get: (_, id) => `${String(8 + Number(String(id).slice(1))).padStart(2, "0")}:00` }); // S01/B01 → 09:00 … S10/B10 → 18:00
