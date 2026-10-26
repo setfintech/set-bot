@@ -67,7 +67,7 @@ ${foot(1430)}${legal(x.hh, "#fff", 150)}`); };
 // E04 · persona "¡Arrancó la semana!"
 const c04 = `.bg{position:absolute;inset:0;background:radial-gradient(1000px 1000px at 70% 30%,#f2bd1c 0%,#DEA503 60%,#c99402 100%)}
 .burst{position:absolute;left:60px;top:240px;width:640px;height:460px}
-.bt{position:absolute;left:170px;top:380px;width:420px;text-align:center;font-size:58px;line-height:1.08;color:#fff}
+.bt{position:absolute;left:60px;top:240px;width:640px;height:460px;box-sizing:border-box;padding:20px 120px 0;display:flex;align-items:center;justify-content:center;text-align:center;font-size:58px;line-height:1.08;color:#fff}
 .rt{position:absolute;left:70px;top:760px;width:620px;background:#fff;border-radius:32px;padding:34px 38px;color:#0E5A2C;z-index:2}
 .rt small{display:block;font-size:30px;color:#3b6b48}.rt b{display:block;font-size:52px;color:#00913E;margin:8px 0;white-space:nowrap}`;
 export const E04 = (x) => { const c = CORR.CLVE, r = x.R.CLVE; return page(1080, 1920, c04, `<div class="bg"></div>
