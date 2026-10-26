@@ -120,16 +120,18 @@ const c07 = `.bg{position:absolute;inset:0;background:#FFF9EC}
 .list{position:absolute;left:80px;right:80px;top:560px;display:flex;flex-direction:column;gap:26px}
 .it{display:flex;align-items:center;gap:30px;background:#fff;border-radius:30px;padding:28px 32px;box-shadow:0 12px 26px rgba(60,50,0,.1);color:#1F2A22}
 .it i{width:84px;height:84px;border-radius:24px;background:#00913E;display:grid;place-items:center;flex:none;font-style:normal;font-size:52px;color:#fff}
-.it b{display:block;font-size:42px}.it small{display:block;font-size:32px;color:#5c6a60;margin-top:4px}`;
+.it b{display:block;font-size:42px}.it small{display:block;font-size:32px;color:#5c6a60;margin-top:4px}
+.disc{position:absolute;left:120px;right:120px;top:1340px;background:#FCEFC2;border:3px dashed #DEA503;border-radius:22px;padding:20px 28px;text-align:center;font-size:28px;color:#7a5a00}`;
 export const C07 = (x) => { const c = CORR.CLVE, r = x.R.CLVE; return page(1080, 1920, c07, `<div class="bg"></div>
 ${plusses([[920, 1440, 100, "plus", 10]])}
 <div class="h">Checklist para enviar <b>hoy</b></div>
 <div class="list">
-<div class="it"><i>✓</i><div><b>Revisa la tasa</b><small class="num">${unitLine(c, x.Rs.CLVE)} · ${x.hh}</small></div></div>
+<div class="it"><i>✓</i><div><b>Revisa la tasa</b><small class="num">${unitLine(c, x.Rs.CLVE)}</small></div></div>
 <div class="it"><i>✓</i><div><b>Elige el monto</b><small>${amtA(c, 100000)} → ${recv(c, r, 100000)}</small></div></div>
 <div class="it"><i>✓</i><div><b>Agrega a tu destinatario</b><small>queda guardado para la próxima</small></div></div>
 <div class="it"><i>✓</i><div><b>Transfiere y adjunta el comprobante</b><small>de 15 minutos a 3 horas</small></div></div>
-<div class="it"><i>✓</i><div><b>Comisión del servicio</b><small>incluida en la tasa: lo que ves es lo que es</small></div></div></div>
+</div>
+<div class="disc">Comisión del servicio incluida en la tasa</div>
 ${foot(1560, "Envía en superenvios.app")}${legal(x.hh, "#5c6a60", 150)}`); };
 
 // C08 · polaroids (Colombia → Venezuela)
