@@ -32,18 +32,10 @@ const weekday = dia.getUTCDay(); // 0 = domingo (calculado, nunca supuesto)
 const slots = cfg.dayOverrides?.[now.date]?.slots ?? (weekday === 0 ? [] : weekday === 6 ? cfg.slots.saturday : cfg.slots.weekday);
 const slot = slots.find((s) => s.hour === now.h);
 
-// n-ésimo día de publicación desde startDate (sin domingos ni días cerrados) → juego (A..F) y variación (0..3)
-function diaPublicacion() {
-  let n = -1;
-  for (let t = Date.parse(cfg.startDate + "T00:00:00Z"); t <= dia.getTime(); t += 86400000) {
-    const d = new Date(t), iso = d.toISOString().slice(0, 10);
-    if (d.getUTCDay() !== 0 && !(cfg.closedDates ?? []).includes(iso)) n++;
-  }
-  return n;
-}
-const n = Math.max(0, diaPublicacion());
-const juego = cfg.setOrder[n % cfg.setOrder.length];
-const variacion = Math.floor(n / cfg.setOrder.length) % 4;
+// 6 juegos fijos (lunes a sábado) que se repiten cada semana: cada día de la semana siempre usa su propio juego
+const juego = cfg.setsPorDia[String(weekday)];
+const variacion = 0;
+const n = 0;
 
 const sh = (c) => execSync(c, { stdio: "inherit" });
 function gitPush(message) {
@@ -117,7 +109,7 @@ async function main() {
     await renderPage(S.feed(x), { width: 1080, height: 1350, out: path.join("out", file) });
     files.push({ kind: "POST", file, offset: 0, text: feedCaption(x, S.feedTipo) });
   }
-  summary(`🖼️ ${now.date} ${pad(now.h)}:00 · día de publicación ${n + 1} · juego ${set} v${variacion} · ${files.map((f) => f.file).join(", ")} · CLVE ${Rs.CLVE} (${hh})`);
+  summary(`🖼️ ${now.date} ${pad(now.h)}:00 · juego ${set} (${["dom", "lun", "mar", "mié", "jue", "vie", "sáb"][weekday]}) · ${files.map((f) => f.file).join(", ")} · CLVE ${Rs.CLVE} (${hh})`);
   if (DRY) return summary("Modo --dry: no publico.");
 
   gitPush(`imágenes ${key}`);

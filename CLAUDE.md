@@ -21,8 +21,9 @@ Cuando el usuario pide una corrección desde Telegram, un workflow te pasa: la *
 - Nada de emojis de banderas (en Linux no se ven): usa `sqFlag("VE")` etc.
 - Zona segura de historias: lo importante entre y=230 y y=1650.
 
-## Mapa de piezas de la muestra
+## Mapa de piezas (6 juegos fijos, uno por día, se repiten cada semana)
 Juego A (miércoles): T01→S01 · T02→S02 · T03→S03 · T04→S04 · T05→S05 · T06→S06 · T07→S07 · T08→S08 · T09→S09 · T10→S10 · TF1→F1 · TF2→F2
 Juego B (jueves): B01…B10 → función del mismo nombre en src/disenos_b.mjs
 Juego C (viernes): C01…C10 y el feed F3 → funciones del mismo nombre en src/disenos_c.mjs
 Juego D (sábado, cierra 15:30): D01…D10 y el feed F4 → funciones del mismo nombre en src/disenos_d.mjs
+Juego E (lunes): E01…E10 y el feed F5 → funciones del mismo nombre en src/disenos_e.mjs

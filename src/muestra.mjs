@@ -5,8 +5,9 @@ import { STORIES as SA, FEEDS } from "./disenos.mjs";
 import { STORIES_B } from "./disenos_b.mjs";
 import { STORIES_C, FEEDS_C } from "./disenos_c.mjs";
 import { STORIES_D, FEEDS_D } from "./disenos_d.mjs";
-const STORIES = { ...SA, ...STORIES_B, ...STORIES_C, ...STORIES_D };
-Object.assign(FEEDS, FEEDS_C, FEEDS_D);
+import { STORIES_E, FEEDS_E } from "./disenos_e.mjs";
+const STORIES = { ...SA, ...STORIES_B, ...STORIES_C, ...STORIES_D, ...STORIES_E };
+Object.assign(FEEDS, FEEDS_C, FEEDS_D, FEEDS_E);
 import { renderPage, closeBrowser } from "./render.mjs";
 
 const HORAS = new Proxy({}, { get: (_, id) => `${String(8 + Number(String(id).slice(1))).padStart(2, "0")}:00` }); // S01/B01 → 09:00 … S10/B10 → 18:00
@@ -22,12 +23,14 @@ const solo = process.argv.slice(2);
 for (const [id, fn] of Object.entries(STORIES)) {
   if (solo.length && !solo.includes(id)) continue;
   const sab = id.startsWith("D"), SH = ["09:00", "09:00", "10:00", "10:00", "11:00", "11:00", "12:00", "12:00", "13:00", "14:00"];
-  const dd = sab ? new Date(hoy.getTime() + ((6 - hoy.getUTCDay() + 7) % 7) * 86400000) : hoy;
+  const prox = (wd) => new Date(hoy.getTime() + ((wd - hoy.getUTCDay() + 7) % 7) * 86400000);
+  const dd = sab ? prox(6) : id.startsWith("E") ? prox(1) : hoy;
   await renderPage(fn({ d: dd, hh: sab ? SH[Number(id.slice(1)) - 1] : HORAS[id], R, Rs }), { width: 1080, height: 1920, out: `preview/${id}.jpg` });
 }
 for (const [id, fn] of Object.entries(FEEDS)) {
   if (solo.length && !solo.includes(id)) continue;
-  const d = id === "F4" ? new Date(hoy.getTime() + ((6 - hoy.getUTCDay() + 7) % 7) * 86400000) : hoy;
+  const prox = (wd) => new Date(hoy.getTime() + ((wd - hoy.getUTCDay() + 7) % 7) * 86400000);
+  const d = id === "F4" ? prox(6) : id === "F5" ? prox(1) : hoy;
   await renderPage(fn({ d, hh: "09:00", R, Rs }), { width: 1080, height: 1350, out: `preview/${id}.jpg` });
 }
 await closeBrowser();

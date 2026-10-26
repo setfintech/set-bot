@@ -6,19 +6,137 @@
   "maxRateAgeMinutes": 100,
   "publishDelayMinutes": 3,
   "keepDays": 3,
-  "networks": { "story": ["instagram", "facebook"], "post": ["instagram", "facebook"] },
-  "setOrder": ["A", "B", "C", "D", "E", "F"],
-  "slots": {
-    "weekday": [
-      { "hour": 9, "pos": [0], "feed": true }, { "hour": 10, "pos": [1] }, { "hour": 11, "pos": [2] }, { "hour": 12, "pos": [3] },
-      { "hour": 13, "pos": [4] }, { "hour": 14, "pos": [5] }, { "hour": 15, "pos": [6] }, { "hour": 16, "pos": [7] },
-      { "hour": 17, "pos": [8] }, { "hour": 18, "pos": [9] }
+  "networks": {
+    "story": [
+      "instagram",
+      "facebook"
     ],
-    "saturday": [
-      { "hour": 9, "pos": [0, 1], "feed": true }, { "hour": 10, "pos": [2, 3] }, { "hour": 11, "pos": [4, 5] },
-      { "hour": 12, "pos": [6, 7] }, { "hour": 13, "pos": [8] }, { "hour": 14, "pos": [9] }
+    "post": [
+      "instagram",
+      "facebook"
     ]
   },
-  "closedDates": ["2026-12-25", "2027-01-01", "2027-01-02"],
-  "dayOverrides": {}
+  "slots": {
+    "weekday": [
+      {
+        "hour": 9,
+        "pos": [
+          0
+        ],
+        "feed": true
+      },
+      {
+        "hour": 10,
+        "pos": [
+          1
+        ]
+      },
+      {
+        "hour": 11,
+        "pos": [
+          2
+        ]
+      },
+      {
+        "hour": 12,
+        "pos": [
+          3
+        ]
+      },
+      {
+        "hour": 13,
+        "pos": [
+          4
+        ]
+      },
+      {
+        "hour": 14,
+        "pos": [
+          5
+        ]
+      },
+      {
+        "hour": 15,
+        "pos": [
+          6
+        ]
+      },
+      {
+        "hour": 16,
+        "pos": [
+          7
+        ]
+      },
+      {
+        "hour": 17,
+        "pos": [
+          8
+        ]
+      },
+      {
+        "hour": 18,
+        "pos": [
+          9
+        ]
+      }
+    ],
+    "saturday": [
+      {
+        "hour": 9,
+        "pos": [
+          0,
+          1
+        ],
+        "feed": true
+      },
+      {
+        "hour": 10,
+        "pos": [
+          2,
+          3
+        ]
+      },
+      {
+        "hour": 11,
+        "pos": [
+          4,
+          5
+        ]
+      },
+      {
+        "hour": 12,
+        "pos": [
+          6,
+          7
+        ]
+      },
+      {
+        "hour": 13,
+        "pos": [
+          8
+        ]
+      },
+      {
+        "hour": 14,
+        "pos": [
+          9
+        ]
+      }
+    ]
+  },
+  "closedDates": [
+    "2026-12-25",
+    "2027-01-01",
+    "2027-01-02"
+  ],
+  "dayOverrides": {},
+  "setsPorDia": {
+    "1": "E",
+    "2": "F",
+    "3": "A",
+    "4": "B",
+    "5": "C",
+    "6": "D"
+  },
+  "_nota": "6 juegos fijos, uno por día (1 = lunes … 6 = sábado); se repiten cada semana."
 }
