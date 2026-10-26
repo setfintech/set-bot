@@ -109,7 +109,7 @@ export const D06 = (x) => { const c = CORR.PEVE, r = x.R.PEVE; return page(1080,
 <svg class="g" viewBox="0 0 900 520"><path d="M90 470 A360 360 0 0 1 810 470" fill="none" stroke="#2b3a31" stroke-width="60" stroke-linecap="round"/>
 <path d="M90 470 A360 360 0 0 1 700 200" fill="none" stroke="#22c55e" stroke-width="60" stroke-linecap="round"/>
 <line x1="450" y1="470" x2="690" y2="230" stroke="#FCE27A" stroke-width="16" stroke-linecap="round"/><circle cx="450" cy="470" r="34" fill="#FCE27A"/>
-<text x="90" y="520" font-size="30" fill="#9fb5a6" font-family="Comfortaa">15 min</text><text x="740" y="520" font-size="30" fill="#9fb5a6" font-family="Comfortaa">3 h</text></svg>
+<text x="90" y="520" font-size="30" fill="#9fb5a6" font-family="Comfortaa">0 km/h</text><text x="670" y="520" font-size="30" fill="#9fb5a6" font-family="Comfortaa">333 km/h</text></svg>
 <div class="v"><small>Con ${amtA(c, 100)} tu familia recibe</small><b class="num">${recv(c, r, 100)}</b></div>
 <div class="rt"><span class="num">${unitLine(c, x.Rs.PEVE)}</span> · ${x.hh}<br><span style="font-size:30px;opacity:.85">Tu envío se procesa de 15 minutos a 3 horas</span></div>
 <div style="position:absolute;right:90px;top:430px;display:flex;gap:8px">${sqFlag("PE", 70)}${sqFlag("VE", 70)}</div>
