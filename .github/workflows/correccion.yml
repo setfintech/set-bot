@@ -57,7 +57,11 @@ jobs:
           git config user.name "set-bot"
           git config user.email "set-bot@users.noreply.github.com"
           git add src/disenos*.mjs
-          git diff --cached --quiet || (git commit -m "Corrección ${PIEZA} (${DISENO}) pedida por Telegram" && git push)
+          git diff --cached --quiet && exit 0
+          git commit -m "Corrección ${PIEZA} (${DISENO}) pedida por Telegram"
+          # si otra corrección se guardó al mismo tiempo, se integra y se reintenta (hasta 5 veces)
+          for i in 1 2 3 4 5; do git pull --rebase && git push && exit 0; sleep $((i * 3)); done
+          exit 1
 
       - name: Enviar a Telegram
         env:

@@ -146,8 +146,8 @@ const c08 = `.bg{position:absolute;inset:0;background:#E9E2D3}
 .note small{display:block;font-size:30px}.note b{display:block;font-size:72px;color:#00913E;margin:8px 0}`;
 export const C08 = (x) => { const c = CORR.COVE, r = x.R.COVE; return page(1080, 1920, c08, `<div class="bg"></div><div class="cork"></div>
 <div class="h">De Colombia a Venezuela, <b>con cariño</b></div>
-<div class="pol" style="left:90px;top:520px;transform:rotate(-6deg)"><i class="pin"></i><div class="img" style="background:#FCD116">${sqFlag("CO", 200)}</div><span>Bogotá</span></div>
-<div class="pol" style="right:90px;top:560px;transform:rotate(5deg)"><i class="pin"></i><div class="img" style="background:#00247D">${sqFlag("VE", 200)}</div><span>Caracas</span></div>
+<div class="pol" style="left:90px;top:520px;transform:rotate(-6deg)"><i class="pin"></i><div class="img" style="background:#FCD116">${sqFlag("CO", 200)}</div><span>Medellín</span></div>
+<div class="pol" style="right:90px;top:560px;transform:rotate(5deg)"><i class="pin"></i><div class="img" style="background:#00247D">${sqFlag("VE", 200)}</div><span>Maracaibo</span></div>
 <div class="note"><small>Con ${amtA(c, 100000)} tu familia recibe</small><b class="num">${recv(c, r, 100000)}</b><small class="num">${unitLine(c, x.Rs.COVE)} · ${x.hh}</small></div>
 ${foot(1570)}${legal(x.hh, "#5a4a30", 150)}`); };
 
