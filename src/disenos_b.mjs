@@ -96,7 +96,7 @@ export const B05 = (x) => { const c = CORR.CLCO, r = x.R.CLCO; return page(1080,
 <div class="h">Función de hoy: tu envío a Colombia 🎬</div>
 <div class="tk"><div class="a"><small>SÚPER ENVÍOS TODAY PRESENTA</small><b>Chile → Colombia</b>
 <div class="v">Sala: ${fechaCorta(x.d)} · ${x.hh}<br>Entrada: ${amtA(c, 100000)}<br>Tu familia recibe: <b class="num">${recv(c, r, 100000)}</b><br>Tasa: <b class="num">${unitLine(c, x.Rs.CLCO)}</b></div></div>
-<div class="s">${sqFlag("CL", 90)}${sqFlag("CO", 90)}<span style="font-size:34px;letter-spacing:.08em;margin-top:20px">ADMITE<br>UNO</span><span style="font-size:24px;opacity:.85;margin-top:30px">Comisión del servicio incluida en la tasa</span></div></div>
+<div class="s">${sqFlag("CL", 90)}${sqFlag("CO", 90)}<span style="font-size:34px;letter-spacing:.08em;margin-top:20px">ENTRADA<br>FAMILIAR</span><span style="font-size:24px;opacity:.85;margin-top:30px">Comisión del servicio incluida en la tasa</span></div></div>
 ${foot(1460)}${legal(x.hh, "#ddd", 230)}`); };
 
 // B06 · balanza (Perú → Venezuela)
