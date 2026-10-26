@@ -248,7 +248,7 @@ export const S08 = (x) => {
 ${plusses([[890, 170, 110, "plusW", 10], [60, 1600, 90, "plusL"]])}
 <div class="h">De <b>Colombia</b> a Venezuela, en minutos ✈️</div>
 <svg class="route" viewBox="0 0 1080 560"><path d="M200 420 Q540 40 880 380" fill="none" stroke="#fff" stroke-width="9" stroke-dasharray="6 26" stroke-linecap="round"/>
-<g transform="translate(540 230) scale(-1.4 1.4)"><path d="M-44 6 L-10 2 L6 -24 L16 -24 L8 2 L40 0 L48 -12 L54 -12 L50 4 L54 20 L48 20 L40 8 L8 6 L16 32 L6 32 L-10 10 L-44 8 Z" fill="#DEA503"/></g></svg>
+<g transform="translate(540 150) scale(-1.4 1.4)"><path d="M-44 6 L-10 2 L6 -24 L16 -24 L8 2 L40 0 L48 -12 L54 -12 L50 4 L54 20 L48 20 L40 8 L8 6 L16 32 L6 32 L-10 10 L-44 8 Z" fill="#DEA503"/></g></svg>
 <div class="cty" style="left:125px;top:870px">${sqFlag("CO", 150)}Bogotá</div><div class="cty" style="right:125px;top:830px">${sqFlag("VE", 150)}Caracas</div>
 <div class="res"><small>Si envías ${amtA(c, 100000)}, tu familia recibe</small><b class="num">${recv(c, r, 100000)}</b><small>${unitLine(c, x.Rs.COVE)} · tasa de las ${x.hh}</small></div>
 <div style="position:absolute;left:0;right:0;top:1590px;text-align:center">${pill("superenvios.app")}</div>

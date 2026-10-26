@@ -1,14 +1,26 @@
 name: Tasas SET
 
-# Por ahora solo pruebas manuales: el temporizador (cron) se activa cuando estén aprobados los diseños del mes.
 on:
+  schedule:
+    # Varios intentos por hora: GitHub atrasa los cron entre 10 y 25 min y el primero que llega publica; los demás salen en 1 s.
+    # El script decide por la HORA Y EL DÍA DE CHILE (sirve con horario de verano e invierno): UTC 11–22 cubre 9–18 h de Chile.
+    - cron: "2 11-22 * * 1-6"
+    - cron: "12 11-22 * * 1-6"
+    - cron: "24 11-22 * * 1-6"
+    - cron: "36 11-22 * * 1-6"
   workflow_dispatch:
     inputs:
       modo:
-        description: "check = prueba el token de Metricool y la API de tasas · muestra = genera la muestra de diseños (no publica)"
+        description: "check = prueba Metricool y la API · muestra = genera la muestra (no publica) · borrador = prueba completa con borradores · publicar = publica de verdad"
         type: choice
-        options: [check, muestra]
+        options: [check, muestra, borrador, publicar]
         default: check
+      hora:
+        description: "(opcional) hora de Chile 0-23"
+        required: false
+      fecha:
+        description: "(opcional) fecha AAAA-MM-DD"
+        required: false
 
 concurrency:
   group: set-bot
@@ -23,23 +35,46 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - name: ¿Hay algo que publicar a esta hora?
+        id: chk
+        env:
+          EVENT: ${{ github.event_name }}
+          METRICOOL_TOKEN: ${{ secrets.METRICOOL_TOKEN }}
+        run: node src/should-run.mjs
       - uses: actions/setup-node@v4
+        if: steps.chk.outputs.go == 'true'
         with:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Chromium (solo para la muestra)
-        if: ${{ inputs.modo == 'muestra' }}
-        run: npx playwright install --with-deps chromium
+        if: steps.chk.outputs.go == 'true'
+      - uses: actions/cache@v4
+        if: steps.chk.outputs.go == 'true'
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+        if: steps.chk.outputs.go == 'true'
+      - name: Identidad de git
+        if: steps.chk.outputs.go == 'true'
+        run: |
+          git config user.name "set-bot"
+          git config user.email "set-bot@users.noreply.github.com"
       - name: Ejecutar
+        if: steps.chk.outputs.go == 'true'
         env:
           METRICOOL_TOKEN: ${{ secrets.METRICOOL_TOKEN }}
           METRICOOL_USER_ID: ${{ secrets.METRICOOL_USER_ID }}
           METRICOOL_BLOG_ID: ${{ secrets.METRICOOL_BLOG_ID }}
+          EVENT: ${{ github.event_name }}
+          FORCE_HOUR: ${{ inputs.hora }}
+          FORCE_DATE: ${{ inputs.fecha }}
         run: |
-          case "${{ inputs.modo }}" in
-            muestra) node src/muestra.mjs ;;
-            *)       node src/check.mjs ;;
+          case "${{ inputs.modo || 'publicar' }}" in
+            check)    node src/check.mjs ;;
+            muestra)  node src/muestra.mjs ;;
+            borrador) node src/run.mjs --draft ;;
+            *)        node src/run.mjs ;;
           esac
       - name: Guardar la muestra
         if: ${{ inputs.modo == 'muestra' }}
