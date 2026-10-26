@@ -161,19 +161,19 @@ ${foot(1500)}${legal(x.hh, "#999", 150)}`);
 // B10 · cuenta regresiva al cierre
 const c10 = `.bg{position:absolute;inset:0;background:radial-gradient(1000px 1100px at 30% 25%,#3a9c52 0%,#2F8F48 55%,#27803e 100%)}
 .h{position:absolute;left:80px;right:80px;top:250px;font-size:80px;line-height:1.05}.h b{color:#DEA503}
-.cd{position:absolute;left:80px;top:520px;display:flex;gap:22px}
-.cd div{width:200px;height:240px;background:#0E5A2C;border-radius:30px;display:grid;place-items:center;font-size:130px;box-shadow:inset 0 -120px 0 rgba(255,255,255,.05),0 16px 30px rgba(0,30,10,.35)}
-.cd i{font-style:normal;font-size:100px;align-self:center}
-.lb{position:absolute;left:80px;top:790px;font-size:32px;opacity:.9}
+.cd{position:absolute;left:80px;top:500px;width:620px;background:#0E5A2C;border-radius:36px;padding:30px 40px 34px;box-shadow:inset 0 -120px 0 rgba(255,255,255,.05),0 16px 30px rgba(0,30,10,.35)}
+.cd small{display:block;font-size:44px;color:#DEA503}.cd b{display:block;font-size:150px;line-height:1.05;white-space:nowrap}
+.lb{position:absolute;left:80px;top:790px;font-size:36px;opacity:.95}
 .rt{position:absolute;left:80px;top:880px;width:690px;z-index:2;background:#fff;color:#0E5A2C;border-radius:32px;padding:36px 40px}
 .rt small{display:block;font-size:30px;color:#3b6b48}.rt b{display:block;font-size:58px;color:#00913E;margin:6px 0;white-space:nowrap}`;
-export const B10 = (x) => { const c = CORR.CLVE, r = x.R.CLVE; const [ch, cm] = cierre(x.d).split(":").map(Number); const [hh] = x.hh.split(":").map(Number); const mins = Math.max(0, (ch * 60 + cm) - hh * 60); return page(1080, 1920, c10, `<div class="bg"></div>
+export const B10 = (x) => { const c = CORR.CLVE, r = x.R.CLVE; const [ch, cm] = cierre(x.d).split(":").map(Number); const [hh] = x.hh.split(":").map(Number); const mins = Math.max(0, (ch * 60 + cm) - hh * 60); const hs = Math.floor(mins / 60), ms = mins % 60; const quedan = [hs ? `${hs} ${hs === 1 ? "hora" : "horas"}` : "", ms || !hs ? `${ms} min` : ""].filter(Boolean).join(" y "); return page(1080, 1920, c10, `<div class="bg"></div>
 ${plusses([[880, 240, 120, "plusW", 10]])}
 <div class="h">Aún estás <b>a tiempo</b> de enviar hoy</div>
-<div class="cd"><div>${String(Math.floor(mins / 60)).padStart(2, "0")}</div><i>:</i><div>${String(mins % 60).padStart(2, "0")}</div></div>
-<div class="lb">horas : minutos para el cierre de hoy (${cierre(x.d)})</div>
+<div class="cd"><small>Queda</small><b>${quedan}</b></div>
+<div class="lb">para el cierre de hoy, a las ${cierre(x.d)}</div>
+${ico("clock", "left:700px;top:430px;width:290px;height:318px;transform:rotate(8deg);z-index:1")}
 <div class="rt"><small>Tasa de las ${x.hh}</small><b class="num">${unitLine(c, x.Rs.CLVE)}</b><small>${amtA(c, 100000)} → ${recv(c, r, 100000)}</small></div>
-${person("sQraV1PtJnA", "right:-60px;bottom:-10px;height:860px")}
+${person("GVsO8wqNuAw", "right:-40px;bottom:-10px;height:860px")}
 ${foot(1260, "Envía en superenvios.app").replace("text-align:center", "text-align:left;padding-left:80px")}${legal(x.hh, "#fff", 120)}`); };
 
 export const STORIES_B = { B01, B02, B03, B04, B05, B06, B07, B08, B09, B10 };
