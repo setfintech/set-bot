@@ -4,7 +4,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
-import { getAll } from "./data.mjs";
+import { getAll, getAllSeries } from "./data.mjs";
 import { SETS, CORRIDOR_ORDER, listo } from "./sets.mjs";
 import { rateTxt, fechaCorta } from "./disenos.mjs";
 import { renderPage, closeBrowser } from "./render.mjs";
@@ -79,7 +79,7 @@ async function main() {
   // el feed depende del día: martes, jueves y sábado van con Venezuela + Colombia + Perú
   const tipoDia = [2, 4, 6].includes(weekday) ? "tres" : "uno";
   const feedJuego = SETS[juego]?.feed && SETS[juego].feedTipo === tipoDia ? SETS[juego] : Object.values(SETS).find((z) => z.feed && z.feedTipo === tipoDia);
-  const S = { ...SETS[set], feed: feedJuego.feed, feedTipo: feedJuego.feedTipo };
+  const S0 = { ...SETS[set], feed: feedJuego.feed, feedTipo: feedJuego.feedTipo };
 
   const key = `${DRAFT ? "prueba_" : ""}${now.date}_${pad(slot.hour)}`;
   const statePath = "state/published.json";
@@ -95,19 +95,20 @@ async function main() {
   const R = Object.fromEntries(Object.entries(all).map(([k, v]) => [k, v.rate]));
   const Rs = Object.fromEntries(Object.entries(all).map(([k, v]) => [k, v.raw]));
   const hh = all.CLVE.hh;
-  const x = { d: dia, hh, R, Rs, v: variacion };
+  const S = set === "F" || S0?.conGraficos ? await getAllSeries() : {}; // historial solo para el juego con gráficos
+  const x = { d: dia, hh, R, Rs, S, v: variacion };
 
   const files = [];
   fs.mkdirSync("out", { recursive: true });
   for (const [i, pos] of slot.pos.entries()) {
     const file = `${key}_${pos}_${CORRIDOR_ORDER[pos]}_${set}${variacion}_story.jpg`;
-    await renderPage(S.stories[pos](x), { width: 1080, height: 1920, out: path.join("out", file) });
+    await renderPage(S0.stories[pos](x), { width: 1080, height: 1920, out: path.join("out", file) });
     files.push({ kind: "STORY", file, offset: i * 30 });
   }
   if (slot.feed) {
     const file = `${key}_feed_${set}${variacion}.jpg`;
-    await renderPage(S.feed(x), { width: 1080, height: 1350, out: path.join("out", file) });
-    files.push({ kind: "POST", file, offset: 0, text: feedCaption(x, S.feedTipo) });
+    await renderPage(S0.feed(x), { width: 1080, height: 1350, out: path.join("out", file) });
+    files.push({ kind: "POST", file, offset: 0, text: feedCaption(x, S0.feedTipo) });
   }
   summary(`🖼️ ${now.date} ${pad(now.h)}:00 · juego ${set} (${["dom", "lun", "mar", "mié", "jue", "vie", "sáb"][weekday]}) · ${files.map((f) => f.file).join(", ")} · CLVE ${Rs.CLVE} (${hh})`);
   if (DRY) return summary("Modo --dry: no publico.");

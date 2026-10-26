@@ -27,3 +27,4 @@ Juego B (jueves): B01…B10 → función del mismo nombre en src/disenos_b.mjs
 Juego C (viernes): C01…C10 y el feed F3 → funciones del mismo nombre en src/disenos_c.mjs
 Juego D (sábado, cierra 15:30): D01…D10 y el feed F4 → funciones del mismo nombre en src/disenos_d.mjs
 Juego E (lunes): E01…E10 y el feed F5 → funciones del mismo nombre en src/disenos_e.mjs
+Juego F (martes, gráficos de bolsa y análisis técnico con el historial real x.S): F01…F10 y el feed F6 → funciones del mismo nombre en src/disenos_f.mjs. Nunca inventar datos del gráfico ni agregar pronósticos o recomendaciones de compra/venta.

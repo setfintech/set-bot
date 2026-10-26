@@ -38,3 +38,16 @@ export async function getAll(keys = ["CLVE", "CLPE", "CLCO", "PEVE", "COVE"]) {
   for (const k of keys) out[k] = await getRate(k);
   return out;
 }
+
+// historial horario (para los gráficos de bolsa y análisis técnico): últimas n horas, de la más antigua a la más reciente
+export async function getSeries(key, n = 48) {
+  const [from, to] = PAIRS[key];
+  const rows = [];
+  for (let p = 1; rows.length < n && p <= Math.ceil(n / 15) + 1; p++) rows.push(...(await getPage(`${BASE}/${from}/${to}?page=${p}`)).data);
+  return rows.sort((a, b) => a.fecha.localeCompare(b.fecha)).slice(-n).map((r) => ({ v: Number(r.monto), hh: r.fecha.slice(11, 16), dd: r.fecha.slice(5, 10) }));
+}
+export async function getAllSeries(keys = ["CLVE", "CLPE", "CLCO", "PEVE", "COVE"], n = 48) {
+  const out = {};
+  for (const k of keys) out[k] = await getSeries(k, n);
+  return out;
+}
