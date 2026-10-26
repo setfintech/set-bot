@@ -101,15 +101,15 @@ ${foot(1600)}${legal(x.hh, "#e3f2e6", 150)}`); };
 // D06 · velocímetro (Perú → Venezuela)
 const c06 = `.bg{position:absolute;inset:0;background:#111A15}
 .h{position:absolute;left:80px;right:80px;top:250px;font-size:72px;line-height:1.08}.h b{color:#22c55e}
-.g{position:absolute;left:90px;top:520px;width:900px;height:520px}
-.v{position:absolute;left:0;right:0;top:1060px;text-align:center}.v small{display:block;font-size:32px;color:#9fb5a6}.v b{display:block;font-size:84px;color:#fff;margin-top:6px}
+.g{position:absolute;left:90px;top:520px;width:900px;height:570px}
+.v{position:absolute;left:0;right:0;top:1100px;text-align:center}.v small{display:block;font-size:32px;color:#9fb5a6}.v b{display:block;font-size:84px;color:#fff;margin-top:6px}
 .rt{position:absolute;left:100px;right:100px;top:1250px;background:#1d2a22;border-radius:30px;padding:30px 36px;text-align:center;font-size:40px;color:#e8ffe9}.rt b{color:#FCE27A}`;
 export const D06 = (x) => { const c = CORR.PEVE, r = x.R.PEVE; return page(1080, 1920, c06, `<div class="bg"></div>
 <div class="h">De Perú a Venezuela, <b>a toda velocidad</b></div>
-<svg class="g" viewBox="0 0 900 520"><path d="M90 470 A360 360 0 0 1 810 470" fill="none" stroke="#2b3a31" stroke-width="60" stroke-linecap="round"/>
+<svg class="g" viewBox="0 0 900 570"><path d="M90 470 A360 360 0 0 1 810 470" fill="none" stroke="#2b3a31" stroke-width="60" stroke-linecap="round"/>
 <path d="M90 470 A360 360 0 0 1 700 200" fill="none" stroke="#22c55e" stroke-width="60" stroke-linecap="round"/>
 <line x1="450" y1="470" x2="690" y2="230" stroke="#FCE27A" stroke-width="16" stroke-linecap="round"/><circle cx="450" cy="470" r="34" fill="#FCE27A"/>
-<text x="90" y="520" font-size="30" fill="#9fb5a6" font-family="Comfortaa">0 km/h</text><text x="670" y="520" font-size="30" fill="#9fb5a6" font-family="Comfortaa">333 km/h</text></svg>
+<text x="90" y="555" text-anchor="middle" font-size="30" fill="#9fb5a6" font-family="Comfortaa">0 km/h</text><text x="810" y="555" text-anchor="middle" font-size="30" fill="#9fb5a6" font-family="Comfortaa">333 km/h</text></svg>
 <div class="v"><small>Con ${amtA(c, 100)} tu familia recibe</small><b class="num">${recv(c, r, 100)}</b></div>
 <div class="rt"><span class="num">${unitLine(c, x.Rs.PEVE)}</span> · ${x.hh}<br><span style="font-size:30px;opacity:.85">Tu envío se procesa de 15 minutos a 3 horas</span></div>
 <div style="position:absolute;right:90px;top:430px;display:flex;gap:8px">${sqFlag("PE", 70)}${sqFlag("VE", 70)}</div>
