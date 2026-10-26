@@ -4,8 +4,9 @@ import { getAll, getRate } from "./data.mjs";
 import { STORIES as SA, FEEDS } from "./disenos.mjs";
 import { STORIES_B } from "./disenos_b.mjs";
 import { STORIES_C, FEEDS_C } from "./disenos_c.mjs";
-const STORIES = { ...SA, ...STORIES_B, ...STORIES_C };
-Object.assign(FEEDS, FEEDS_C);
+import { STORIES_D, FEEDS_D } from "./disenos_d.mjs";
+const STORIES = { ...SA, ...STORIES_B, ...STORIES_C, ...STORIES_D };
+Object.assign(FEEDS, FEEDS_C, FEEDS_D);
 import { renderPage, closeBrowser } from "./render.mjs";
 
 const HORAS = new Proxy({}, { get: (_, id) => `${String(8 + Number(String(id).slice(1))).padStart(2, "0")}:00` }); // S01/B01 → 09:00 … S10/B10 → 18:00
@@ -20,11 +21,13 @@ fs.mkdirSync("preview", { recursive: true });
 const solo = process.argv.slice(2);
 for (const [id, fn] of Object.entries(STORIES)) {
   if (solo.length && !solo.includes(id)) continue;
-  await renderPage(fn({ d: hoy, hh: HORAS[id], R, Rs }), { width: 1080, height: 1920, out: `preview/${id}.jpg` });
+  const sab = id.startsWith("D"), SH = ["09:00", "09:00", "10:00", "10:00", "11:00", "11:00", "12:00", "12:00", "13:00", "14:00"];
+  const dd = sab ? new Date(hoy.getTime() + ((6 - hoy.getUTCDay() + 7) % 7) * 86400000) : hoy;
+  await renderPage(fn({ d: dd, hh: sab ? SH[Number(id.slice(1)) - 1] : HORAS[id], R, Rs }), { width: 1080, height: 1920, out: `preview/${id}.jpg` });
 }
 for (const [id, fn] of Object.entries(FEEDS)) {
   if (solo.length && !solo.includes(id)) continue;
-  const d = hoy;
+  const d = id === "F4" ? new Date(hoy.getTime() + ((6 - hoy.getUTCDay() + 7) % 7) * 86400000) : hoy;
   await renderPage(fn({ d, hh: "09:00", R, Rs }), { width: 1080, height: 1350, out: `preview/${id}.jpg` });
 }
 await closeBrowser();
