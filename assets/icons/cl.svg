@@ -1,0 +1,18 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="gV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8FDA6E"/><stop offset=".5" stop-color="#3FAE4F"/><stop offset="1" stop-color="#1B7A36"/></linearGradient>
+<linearGradient id="gVd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1F8A3C"/><stop offset="1" stop-color="#0F5A26"/></linearGradient>
+<linearGradient id="gW" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E3DC"/></linearGradient>
+<linearGradient id="gWd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B9C6BD"/><stop offset="1" stop-color="#8FA095"/></linearGradient>
+<linearGradient id="gL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D8F3B8"/><stop offset="1" stop-color="#8CC573"/></linearGradient>
+<linearGradient id="gLd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6FA457"/><stop offset="1" stop-color="#4E8039"/></linearGradient>
+<radialGradient id="gGold" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#FFF1A8"/><stop offset=".45" stop-color="#F7C530"/><stop offset="1" stop-color="#C98A0B"/></radialGradient>
+<linearGradient id="gGoldE" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D79A12"/><stop offset="1" stop-color="#9A6606"/></linearGradient>
+<linearGradient id="gBill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B7E39A"/><stop offset=".6" stop-color="#63B650"/><stop offset="1" stop-color="#3C8E35"/></linearGradient>
+<linearGradient id="gRed" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6A5E"/><stop offset="1" stop-color="#C62520"/></linearGradient>
+<linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8FC3FF"/><stop offset="1" stop-color="#2D6FD6"/></linearGradient>
+<linearGradient id="gGrey" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6B737B"/><stop offset="1" stop-color="#2F3439"/></linearGradient>
+</defs><defs><clipPath id="fc"><circle cx="60" cy="60" r="52"/></clipPath></defs>
+<circle cx="60" cy="66" r="52" fill="#000" opacity=".18"/>
+<g clip-path="url(#fc)"><rect x="0" y="0" width="120" height="60" fill="#fff"/><rect x="0" y="60" width="120" height="60" fill="#D52B1E"/><rect x="0" y="0" width="56" height="60" fill="#0039A6"/><path d="M28.0 15.0L32.0 24.5L42.3 25.4L34.4 32.1L36.8 42.1L28.0 36.8L19.2 42.1L21.6 32.1L13.7 25.4L24.0 24.5Z" fill="#fff"/></g>
+<circle cx="60" cy="60" r="52" fill="none" stroke="#fff" stroke-width="7"/>
+<path d="M28 34 A40 40 0 0 1 60 18" stroke="#fff" stroke-width="6" fill="none" opacity=".5" stroke-linecap="round"/></svg>

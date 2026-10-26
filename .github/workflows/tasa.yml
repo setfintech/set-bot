@@ -1,0 +1,49 @@
+name: Tasas SET
+
+# Por ahora solo pruebas manuales: el temporizador (cron) se activa cuando estén aprobados los diseños del mes.
+on:
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "check = prueba el token de Metricool y la API de tasas · muestra = genera la muestra de diseños (no publica)"
+        type: choice
+        options: [check, muestra]
+        default: check
+
+concurrency:
+  group: set-bot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  correr:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Chromium (solo para la muestra)
+        if: ${{ inputs.modo == 'muestra' }}
+        run: npx playwright install --with-deps chromium
+      - name: Ejecutar
+        env:
+          METRICOOL_TOKEN: ${{ secrets.METRICOOL_TOKEN }}
+          METRICOOL_USER_ID: ${{ secrets.METRICOOL_USER_ID }}
+          METRICOOL_BLOG_ID: ${{ secrets.METRICOOL_BLOG_ID }}
+        run: |
+          case "${{ inputs.modo }}" in
+            muestra) node src/muestra.mjs ;;
+            *)       node src/check.mjs ;;
+          esac
+      - name: Guardar la muestra
+        if: ${{ inputs.modo == 'muestra' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: muestra
+          path: preview/

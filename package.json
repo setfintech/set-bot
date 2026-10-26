@@ -1,0 +1,12 @@
+{
+  "name": "set-bot",
+  "private": true,
+  "type": "module",
+  "description": "Publica automáticamente las historias y el post de tasa de SET (datos reales de api.superenvios.app) vía Metricool",
+  "scripts": {
+    "preview": "node src/preview.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.63.0"
+  }
+}
