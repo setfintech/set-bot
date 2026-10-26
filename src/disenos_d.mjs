@@ -48,7 +48,7 @@ ${foot(1460, "Hoy hasta las 15:30 en superenvios.app")}${legal(x.hh, "#3b5a44", 
 
 // D03 · cajero automático (Chile → Perú)
 const c03 = `.bg{position:absolute;inset:0;background:#3d4a43}
-.atm{position:absolute;left:110px;right:110px;top:250px;height:1260px;background:linear-gradient(180deg,#d9dfdb,#b8c2bc);border-radius:40px;box-shadow:0 30px 60px rgba(0,0,0,.45);padding:60px}
+.atm{position:absolute;left:110px;right:110px;top:370px;height:1140px;background:linear-gradient(180deg,#d9dfdb,#b8c2bc);border-radius:40px;box-shadow:0 30px 60px rgba(0,0,0,.45);padding:60px}
 .scr{background:#0E5A2C;border-radius:24px;height:700px;padding:40px;color:#e8ffe9;box-shadow:inset 0 0 0 10px #2b3530}
 .scr small{display:block;font-size:30px;opacity:.8}.scr .t{font-size:46px;margin:10px 0 30px}
 .opt{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.12);border-radius:16px;padding:22px 24px;margin:16px 0;font-size:36px}.opt b{color:#FCE27A}
@@ -59,7 +59,7 @@ export const D03 = (x) => { const c = CORR.CLPE, r = x.R.CLPE; return page(1080,
 ${[50000, 100000, 300000].map((n) => `<div class="opt"><span>${amtA(c, n)}</span><b class="num">${recv(c, r, n)}</b></div>`).join("")}
 <div style="margin-top:26px;font-size:30px" class="num">${unitLine(c, x.Rs.CLPE)}</div></div>
 <div class="keys">${["1", "2", "3", "4", "5", "6", "7", "8", "9"].map((k) => `<i>${k}</i>`).join("")}</div></div>
-<div style="position:absolute;right:150px;top:300px;display:flex;gap:8px">${sqFlag("CL", 70)}${sqFlag("PE", 70)}</div>
+<div style="position:absolute;left:0;right:0;top:245px;display:flex;justify-content:center;gap:16px">${sqFlag("CL", 100)}${sqFlag("PE", 100)}</div>
 ${foot(1570)}${legal(x.hh, "#d9dfdb", 150)}`); };
 
 // D04 · sábado en familia
