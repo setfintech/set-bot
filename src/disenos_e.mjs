@@ -105,7 +105,7 @@ const c06 = `.bg{position:absolute;inset:0;background:linear-gradient(180deg,#0E
 .btns{position:absolute;left:0;right:0;bottom:60px;display:flex;justify-content:center;gap:50px}
 .btns i{width:120px;height:120px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:52px}`;
 export const E06 = (x) => { const c = CORR.PEVE, r = x.R.PEVE; return page(1080, 1920, c06, `<div class="bg"></div>
-<div class="ph2"><div class="vs"><div class="who"><b>Mamá 💚</b><span>Caracas · videollamada</span></div><div class="av">👵</div>
+<div class="ph2"><div class="vs"><div class="who"><b>Mamá 💚</b><span>Valencia · videollamada</span></div><div class="av">👵</div>
 <div class="card"><small>Desde Perú le mandaste</small><b class="num">${recv(c, r, 100)}</b><small>con ${amtA(c, 100)} · <span class="num">${unitLine(c, x.Rs.PEVE)}</span></small></div>
 <div class="btns"><i style="background:#E0302B">📞</i><i style="background:rgba(255,255,255,.25)">🎤</i><i style="background:rgba(255,255,255,.25)">📷</i></div></div></div>
 <div style="position:absolute;right:120px;top:270px;display:flex;gap:6px;z-index:3">${sqFlag("PE", 70)}${sqFlag("VE", 70)}</div>
