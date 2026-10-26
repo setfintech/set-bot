@@ -76,9 +76,9 @@ const c04 = `.bg{position:absolute;inset:0;background:linear-gradient(180deg,#DE
 .hl p{font-size:36px;line-height:1.3;color:#0E5A2C;text-shadow:none;margin-top:16px}
 .tag{position:absolute;left:60px;top:1060px;width:440px;background:#E0302B;color:#fff;border-radius:26px;padding:24px 30px;font-size:34px;line-height:1.3;transform:rotate(-3deg)}`;
 export const C04 = (x) => { const c = CORR.CLVE, r = x.R.CLVE; return page(1080, 1920, c04, `<div class="bg"></div>
-<div class="mast">TASA</div><div class="ed">EDICIÓN ${fechaCorta(x.d).toUpperCase()}<br>${x.hh} · CHILE → VENEZUELA</div>
+<div class="mast">TASA</div><div class="ed">TASA DEL ${fechaCorta(x.d).toUpperCase()}<br>${x.hh} · CHILE → VENEZUELA</div>
 ${person("2JfOT9e3uZg", "right:-80px;bottom:0;height:1250px")}
-<div class="hl"><small>LA CIFRA DEL DÍA</small><b class="num">${rateTxt(x.Rs.CLVE)} Bs</b><p>por cada 1 CLP.<br>Con ${amtA(c, 50000)} tu familia recibe ${recv(c, r, 50000)}.</p></div>
+<div class="hl"><small>LA TASA DE HOY</small><b class="num">${rateTxt(x.Rs.CLVE)} Bs</b><p>por cada 1 CLP.<br>Con ${amtA(c, 50000)} tu familia recibe ${recv(c, r, 50000)}.</p></div>
 <div class="tag">Comisión del servicio incluida en la tasa · de 15 min a 3 h</div>
 ${foot(1320, "superenvios.app").replace("text-align:center", "text-align:left;padding-left:60px")}${legal(x.hh, "#0E5A2C", 140).replace('class="legal" style="', 'class="legal" style="right:470px;text-align:left;')}`); };
 
