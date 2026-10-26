@@ -88,12 +88,12 @@ const c05 = `.bg{position:absolute;inset:0;background:linear-gradient(180deg,#1b
 const jersey = (l, body, trim, collar, crest) => `<svg class="jersey" style="left:${l}px" viewBox="0 0 700 760"><path d="M220 20 L140 40 L10 170 L110 290 L170 240 L170 740 L530 740 L530 240 L590 290 L690 170 L560 40 L480 20 C 450 80, 250 80, 220 20 Z" fill="${body}" stroke="${trim}" stroke-width="10"/><path d="M10 170 L110 290" stroke="${trim}" stroke-width="30"/><path d="M690 170 L590 290" stroke="${trim}" stroke-width="30"/><path d="M220 20 C 250 80, 450 80, 480 20" fill="none" stroke="${collar}" stroke-width="20"/><rect x="170" y="690" width="360" height="22" fill="${trim}"/>${crest}</svg>`;
 const escudo = (fill, extra) => `<g transform="translate(300 150) scale(1.5)"><path d="M0 0 H60 V50 Q60 85 30 100 Q0 85 0 50 Z" fill="${fill}" stroke="#fff" stroke-width="5"/>${extra}</g>`;
 const crestCL = escudo("#fff", `<path d="M0 0 H60 V45 H0 Z" fill="#0039A6"/><path d="M0 45 H60 V50 Q60 85 30 100 Q0 85 0 50 Z" fill="#D52B1E"/><path d="M30 8 L34 20 L47 20 L37 28 L41 40 L30 33 L19 40 L23 28 L13 20 L26 20 Z" fill="#fff"/>`);
-const crestCO = escudo("#FCD116", `<path d="M0 50 Q0 85 30 100 Q60 85 60 50 Z" fill="#CE1126"/><path d="M0 25 H60 V50 H0 Z" fill="#003893"/><text x="30" y="19" text-anchor="middle" font-size="16" font-weight="700" fill="#003893" font-family="Comfortaa">FCF</text><circle cx="30" cy="38" r="8" fill="#FCD116"/>`);
+const crestCO = escudo("#FCD116", `<path d="M0 50 Q0 85 30 100 Q60 85 60 50 Z" fill="#CE1126"/><path d="M0 25 H60 V50 H0 Z" fill="#003893"/><circle cx="30" cy="38" r="8" fill="#FCD116"/>`);
 export const D05 = (x) => { const c = CORR.CLCO, r = x.R.CLCO; return page(1080, 1920, c05, `<div class="bg"></div><div class="field"></div>
 <div class="h">Las camisetas de hoy: <b>Chile → Colombia</b> ⚽</div>
 ${jersey(80, "#D52B1E", "#fff", "#0039A6", crestCL)}
 ${jersey(570, "#FCD116", "#003893", "#CE1126", crestCO)}
-<div class="jn" style="left:80px">CHILE · FFCh</div><div class="jn" style="left:570px">COLOMBIA · FCF</div>
+<div class="jn" style="left:80px">CHILE</div><div class="jn" style="left:570px">COLOMBIA</div>
 <div class="card"><div class="pair">${sqFlag("CL", 80)}${chev()}${sqFlag("CO", 80)}</div><small>TASA de las ${x.hh}</small><b class="r num">${rateTxt(x.Rs.CLCO)}</b><small>COP por 1 CLP</small></div>
 <div class="cap">${amtA(c, 100000)} → <b class="num">${recv(c, r, 100000)}</b></div>
 ${foot(1600)}${legal(x.hh, "#e3f2e6", 150)}`); };
