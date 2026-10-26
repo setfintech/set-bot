@@ -53,7 +53,7 @@ const c03 = `.bg{position:absolute;inset:0;background:radial-gradient(1000px 110
 .h{position:absolute;left:80px;right:80px;top:240px;font-size:76px;line-height:1.08}.h b{color:#DEA503}
 .tag{position:absolute;left:170px;top:520px;width:740px;height:1040px;background:#FFF4D6;border-radius:40px 40px 60px 60px;color:#5a3d12;transform:rotate(-4deg);box-shadow:0 30px 60px rgba(0,30,10,.35);padding:150px 60px 60px}
 .hole{position:absolute;left:50%;top:50px;width:70px;height:70px;margin-left:-35px;border-radius:50%;background:#2F8F48;box-shadow:inset 0 0 0 10px #d9c79e}
-.str{position:absolute;left:50%;top:-230px;width:8px;height:300px;margin-left:-4px;background:#c43c2c;border-radius:4px}
+.str{position:absolute;left:50%;top:-60px;width:8px;height:120px;margin-left:-4px;background:#c43c2c;border-radius:4px}
 .code{display:flex;justify-content:space-between;align-items:center;font-size:120px;letter-spacing:4px;color:#2F2410}.code span{font-size:34px;letter-spacing:0;color:#8a6a35;display:block;text-align:center}
 .ln{border-top:4px dashed #d9c79e;margin:34px 0}
 .r{font-size:34px;color:#8a6a35}.r b{display:block;font-size:76px;color:#D91023;margin-top:8px}
