@@ -44,10 +44,10 @@ jobs:
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
-          PROMPT="Lee CLAUDE.md y sigue sus reglas. Pieza: ${PIEZA}. Diseño a editar: ${DISENO} (función ${DISENO} y su CSS en src/disenos.mjs). Cambio pedido por Francisco: \"${CAMBIO}\". Aplica solo ese cambio, verifica con node --check src/disenos.mjs y termina con UNA línea en español que empiece con 'Hice:' explicando qué cambiaste."
+          PROMPT="Lee CLAUDE.md y sigue sus reglas. Pieza: ${PIEZA}. Diseño a editar: ${DISENO} (función ${DISENO} y su CSS, en src/disenos.mjs o src/disenos_*.mjs). Cambio pedido por Francisco: \"${CAMBIO}\". Aplica solo ese cambio, verifica con node --check sobre el archivo que editaste y termina con UNA línea en español que empiece con 'Hice:' explicando qué cambiaste."
           claude -p "$PROMPT" --allowedTools "Read" "Edit" "Write" "Glob" "Grep" "Bash(node --check:*)" --permission-mode acceptEdits --max-turns 30 --output-format text > respuesta.txt || true
           cat respuesta.txt
-          node --check src/disenos.mjs
+          for f in src/disenos*.mjs; do node --check "$f"; done
 
       - name: Renderizar
         run: node src/muestra.mjs "$DISENO"
@@ -56,7 +56,7 @@ jobs:
         run: |
           git config user.name "set-bot"
           git config user.email "set-bot@users.noreply.github.com"
-          git add src/disenos.mjs
+          git add src/disenos*.mjs
           git diff --cached --quiet || (git commit -m "Corrección ${PIEZA} (${DISENO}) pedida por Telegram" && git push)
 
       - name: Enviar a Telegram

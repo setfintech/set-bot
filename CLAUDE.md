@@ -2,11 +2,11 @@
 
 Este repositorio genera las historias (1080×1920) y posts de feed (1080×1350) de **tasa** de Súper Envíos Today (SET).
 Cuando el usuario pide una corrección desde Telegram, un workflow te pasa: la **pieza** (ej. T08), el **diseño** que la genera
-(ej. S08 en `src/disenos.mjs`) y el **cambio pedido** (texto del usuario). Tu trabajo: aplicar SOLO ese cambio.
+(ej. S08 en `src/disenos.mjs`, B03 en `src/disenos_b.mjs`; cada juego de días tiene su archivo `src/disenos_<juego>.mjs`) y el **cambio pedido** (texto del usuario). Tu trabajo: aplicar SOLO ese cambio.
 
 ## Cómo trabajar
 - Todo en español. El usuario es Francisco (SET).
-- Edita únicamente la función del diseño indicado (y su CSS `cssXX`) en `src/disenos.mjs`. No toques otros diseños, ni `data.mjs`, ni los workflows.
+- Edita únicamente la función del diseño indicado (y su CSS `cssXX`/`cXX`) en el archivo donde está definida (`src/disenos.mjs` o `src/disenos_<juego>.mjs`). No toques otros diseños, ni `data.mjs`, ni los workflows.
 - No renderices ni hagas commit: el workflow lo hace después (renderiza con `node src/muestra.mjs <diseño>`).
 - Si el pedido es ambiguo, aplica la interpretación más razonable y descríbela en una línea al final de tu respuesta (se le reenvía al usuario).
 - Puedes verificar que el archivo sigue siendo JavaScript válido con `node --check src/disenos.mjs`.
@@ -22,4 +22,5 @@ Cuando el usuario pide una corrección desde Telegram, un workflow te pasa: la *
 - Zona segura de historias: lo importante entre y=230 y y=1650.
 
 ## Mapa de piezas de la muestra
-T01→S01 · T02→S02 · T03→S03 · T04→S04 · T05→S05 · T06→S06 · T07→S07 · T08→S08 · T09→S09 · T10→S10 · TF1→F1 · TF2→F2
+Juego A (miércoles): T01→S01 · T02→S02 · T03→S03 · T04→S04 · T05→S05 · T06→S06 · T07→S07 · T08→S08 · T09→S09 · T10→S10 · TF1→F1 · TF2→F2
+Juego B (jueves): B01…B10 → función del mismo nombre en src/disenos_b.mjs
