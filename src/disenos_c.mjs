@@ -59,7 +59,7 @@ const c03 = `.bg{position:absolute;inset:0;background:#F4F6F5}
 .res small{display:block;font-size:28px;opacity:.85}.res b{display:block;font-size:68px;color:#FCE27A;margin:6px 0}`;
 export const C03 = (x) => { const c = CORR.CLPE, r = x.R.CLPE; return page(1080, 1920, c03, `<div class="bg"></div>
 ${plusses([[900, 1420, 100, "plus", 10]])}
-<div class="h">Línea directa a <b>Perú</b>, sin transbordos</div><div class="line"></div>
+<div class="h">Línea directa a <b>Perú</b>, sin transbordos o escalas</div><div class="line"></div>
 <div class="st" style="top:540px"><i></i><div><b>Santiago</b><small>Envías ${amtA(c, 100000)} · ${x.hh}</small></div></div>
 <div class="st" style="top:760px"><i></i><div><b>Tasa del día</b><small class="num">${unitLine(c, x.Rs.CLPE)}</small></div></div>
 <div class="st" style="top:1340px"><i></i><div><b>Lima</b><small>De 15 minutos a 3 horas</small></div></div>
