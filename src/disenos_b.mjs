@@ -99,7 +99,7 @@ export const B05 = (x) => { const c = CORR.CLCO, r = x.R.CLCO; return page(1080,
 <div class="s">${sqFlag("CL", 90)}${sqFlag("CO", 90)}<span style="font-size:34px;letter-spacing:.08em;margin-top:20px">ENTRADA<br>FAMILIAR</span><span style="font-size:24px;opacity:.85;margin-top:30px">Comisión del servicio incluida en la tasa</span></div></div>
 ${foot(1460)}${legal(x.hh, "#ddd", 230)}`); };
 
-// B06 · balanza (Perú → Venezuela)
+// B06 · puente (Perú → Venezuela)
 const c06 = `.bg{position:absolute;inset:0;background:radial-gradient(1000px 1100px at 70% 25%,#f2bd1c 0%,#DEA503 60%,#c99402 100%)}
 .h{position:absolute;left:80px;right:80px;top:240px;font-size:72px;line-height:1.1;color:#0E5A2C}.h b{color:#fff}
 .sc{position:absolute;left:0;top:560px;width:1080px;height:760px}
@@ -108,12 +108,11 @@ const c06 = `.bg{position:absolute;inset:0;background:radial-gradient(1000px 110
 .pl small{display:block;font-size:30px}.pl b{display:block;font-size:56px;margin-top:6px}`;
 export const B06 = (x) => { const c = CORR.PEVE, r = x.R.PEVE; return page(1080, 1920, c06, `<div class="bg"></div>
 ${plusses([[880, 1500, 110, "plusW", 10], [60, 1550, 90, "plus"]])}
-<div class="h">Perú → Venezuela: <b>así se equilibra</b> hoy</div>
-<svg class="sc" viewBox="0 0 1080 760"><rect x="525" y="140" width="30" height="520" rx="12" fill="#0E5A2C"/><rect x="380" y="650" width="320" height="40" rx="20" fill="#0E5A2C"/>
-<g transform="rotate(-4 540 160)"><rect x="160" y="146" width="760" height="24" rx="12" fill="#187D41"/><circle cx="540" cy="158" r="34" fill="#fff" stroke="#187D41" stroke-width="10"/>
-<path d="M200 170 L150 380 M200 170 L250 380 M880 170 L830 380 M880 170 L930 380" stroke="#187D41" stroke-width="6"/></g></svg>
+<div class="h">Perú → Venezuela: <b>tu envío cruza el puente</b> hoy</div>
+<svg class="sc" viewBox="0 0 1080 760"><path d="M120 520 Q540 220 960 520" fill="none" stroke="#187D41" stroke-width="26" stroke-linecap="round"/><rect x="100" y="500" width="880" height="34" rx="17" fill="#0E5A2C"/>
+<path d="M270 400 V500 M405 340 V500 M540 320 V500 M675 340 V500 M810 400 V500" stroke="#187D41" stroke-width="8"/></svg>
 <div class="pl" style="left:40px;top:960px"><div class="d">${sqFlag("PE", 90)}<small>Envías</small><b class="num">${amtA(c, 100)}</b></div></div>
-<div class="pl" style="right:40px;top:910px"><div class="d">${sqFlag("VE", 90)}<small>Reciben</small><b class="num">${recv(c, r, 100)}</b></div></div>
+<div class="pl" style="right:40px;top:960px"><div class="d">${sqFlag("VE", 90)}<small>Reciben</small><b class="num">${recv(c, r, 100)}</b></div></div>
 <div style="position:absolute;left:0;right:0;top:1380px;text-align:center;font-size:40px;color:#0E5A2C" class="num">${unitLine(c, x.Rs.PEVE)} · ${x.hh}</div>
 ${foot(1500)}${legal(x.hh, "#0E5A2C", 140)}`); };
 
