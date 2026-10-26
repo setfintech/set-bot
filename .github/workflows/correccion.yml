@@ -1,0 +1,79 @@
+name: Corrección desde Telegram
+
+# Lo dispara el bot de Cloudflare cuando Francisco pide un cambio en Telegram (repository_dispatch "correccion").
+# Claude (en la nube, con la clave del plan) aplica el cambio en src/disenos.mjs, se renderiza y vuelve a Telegram con botones.
+on:
+  repository_dispatch:
+    types: [correccion]
+  workflow_dispatch:
+    inputs:
+      pieza: { description: "Pieza (ej. T08)", required: true }
+      diseno: { description: "Diseño (ej. S08)", required: true }
+      cambio: { description: "Cambio pedido", required: true }
+
+concurrency:
+  group: correccion
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  corregir:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PIEZA: ${{ github.event.client_payload.pieza || inputs.pieza }}
+      DISENO: ${{ github.event.client_payload.diseno || inputs.diseno }}
+      CAMBIO: ${{ github.event.client_payload.cambio || inputs.cambio }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+      - run: npm install -g @anthropic-ai/claude-code
+
+      - name: Claude aplica el cambio
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          PROMPT="Lee CLAUDE.md y sigue sus reglas. Pieza: ${PIEZA}. Diseño a editar: ${DISENO} (función ${DISENO} y su CSS en src/disenos.mjs). Cambio pedido por Francisco: \"${CAMBIO}\". Aplica solo ese cambio, verifica con node --check src/disenos.mjs y termina con UNA línea en español que empiece con 'Hice:' explicando qué cambiaste."
+          claude -p "$PROMPT" --allowedTools "Read" "Edit" "Write" "Glob" "Grep" "Bash(node --check:*)" --permission-mode acceptEdits --max-turns 30 --output-format text > respuesta.txt || true
+          cat respuesta.txt
+          node --check src/disenos.mjs
+
+      - name: Renderizar
+        run: node src/muestra.mjs "$DISENO"
+
+      - name: Guardar el cambio en el repo
+        run: |
+          git config user.name "set-bot"
+          git config user.email "set-bot@users.noreply.github.com"
+          git add src/disenos.mjs
+          git diff --cached --quiet || (git commit -m "Corrección ${PIEZA} (${DISENO}) pedida por Telegram" && git push)
+
+      - name: Enviar a Telegram
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          ADMIN_KEY: ${{ secrets.ADMIN_KEY }}
+          WORKER_URL: https://set-bot.set-worker.workers.dev
+        run: |
+          NOTA="$(grep -i '^Hice:' respuesta.txt | tail -1)"
+          node src/reenviar.mjs "$PIEZA" "$DISENO" "$CAMBIO" "$NOTA"
+
+      - name: Avisar si algo falló
+        if: failure()
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" -d chat_id="$CHAT_ID" \
+            --data-urlencode text="⚠️ No pude corregir ${PIEZA} en la nube. Lo reviso desde el computador y te la mando."

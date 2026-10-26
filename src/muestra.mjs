@@ -9,7 +9,9 @@ const all = await getAll();
 all.VECL = await getRate("VECL");
 const R = Object.fromEntries(Object.entries(all).map(([k, v]) => [k, v.rate]));
 const Rs = Object.fromEntries(Object.entries(all).map(([k, v]) => [k, v.raw])); // tasa tal cual viene de la API
-const hoy = new Date(Date.UTC(2026, 9, 26));
+// fecha de hoy en Chile (las piezas muestran el día real)
+const [Y, M, D] = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Santiago" }).format(new Date()).split("-").map(Number);
+const hoy = new Date(Date.UTC(Y, M - 1, D));
 fs.mkdirSync("preview", { recursive: true });
 const solo = process.argv.slice(2);
 for (const [id, fn] of Object.entries(STORIES)) {
@@ -18,7 +20,7 @@ for (const [id, fn] of Object.entries(STORIES)) {
 }
 for (const [id, fn] of Object.entries(FEEDS)) {
   if (solo.length && !solo.includes(id)) continue;
-  const d = id === "F2" ? new Date(Date.UTC(2026, 9, 27)) : hoy;
+  const d = hoy;
   await renderPage(fn({ d, hh: "09:00", R, Rs }), { width: 1080, height: 1350, out: `preview/${id}.jpg` });
 }
 await closeBrowser();
