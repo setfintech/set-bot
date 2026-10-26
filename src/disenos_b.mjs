@@ -104,16 +104,16 @@ const c06 = `.bg{position:absolute;inset:0;background:radial-gradient(1000px 110
 .h{position:absolute;left:80px;right:80px;top:240px;font-size:72px;line-height:1.1;color:#0E5A2C}.h b{color:#fff}
 .sc{position:absolute;left:0;top:560px;width:1080px;height:760px}
 .pl{position:absolute;width:360px;text-align:center;color:#0E5A2C}
-.pl .d{background:#fff;border-radius:30px;padding:28px 20px;box-shadow:0 18px 30px rgba(80,50,0,.25)}
-.pl small{display:block;font-size:30px}.pl b{display:block;font-size:56px;margin-top:6px}`;
+.pl .d{box-sizing:border-box;width:360px;height:270px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border-radius:30px;padding:20px;box-shadow:0 18px 30px rgba(80,50,0,.25)}
+.pl small{display:block;font-size:30px}.pl b{display:block;font-size:46px;margin-top:6px;white-space:nowrap}`;
 export const B06 = (x) => { const c = CORR.PEVE, r = x.R.PEVE; return page(1080, 1920, c06, `<div class="bg"></div>
 ${plusses([[880, 1500, 110, "plusW", 10], [60, 1550, 90, "plus"]])}
 <div class="h">Perú → Venezuela: <b>tu envío cruza el puente</b> hoy</div>
 <svg class="sc" viewBox="0 0 1080 760"><path d="M120 520 Q540 220 960 520" fill="none" stroke="#187D41" stroke-width="26" stroke-linecap="round"/><rect x="100" y="500" width="880" height="34" rx="17" fill="#0E5A2C"/>
 <path d="M270 400 V500 M405 340 V500 M540 320 V500 M675 340 V500 M810 400 V500" stroke="#187D41" stroke-width="8"/></svg>
-<div class="pl" style="left:40px;top:960px"><div class="d">${sqFlag("PE", 90)}<small>Envías</small><b class="num">${amtA(c, 100)}</b></div></div>
-<div class="pl" style="right:40px;top:960px"><div class="d">${sqFlag("VE", 90)}<small>Reciben</small><b class="num">${recv(c, r, 100)}</b></div></div>
-<div style="position:absolute;left:0;right:0;top:1380px;text-align:center;font-size:40px;color:#0E5A2C" class="num">${unitLine(c, x.Rs.PEVE)} · ${x.hh}</div>
+<div class="pl" style="left:40px;top:1130px"><div class="d">${sqFlag("PE", 90)}<small>Envías</small><b class="num">${amtA(c, 100)}</b></div></div>
+<div class="pl" style="right:40px;top:1130px"><div class="d">${sqFlag("VE", 90)}<small>Reciben</small><b class="num">${recv(c, r, 100)}</b></div></div>
+<div style="position:absolute;left:0;right:0;top:1425px;text-align:center;font-size:36px;color:#0E5A2C" class="num">${unitLine(c, x.Rs.PEVE)} · ${x.hh}</div>
 ${foot(1500)}${legal(x.hh, "#0E5A2C", 140)}`); };
 
 // B07 · barras de montos (Chile → Venezuela)
