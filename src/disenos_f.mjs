@@ -124,20 +124,23 @@ ${foot(1470)}${legal(x.hh, "#8b95a1", 140)}`); };
 // F04 · velas + RSI 14 + soporte/resistencia (24 h)
 const c04 = `.bg{position:absolute;inset:0;background:${TV.bg};color:#d1d4dc}
 .hd{position:absolute;left:50px;right:50px;top:230px;display:flex;justify-content:space-between;align-items:center}.hd b{font-size:44px;color:#fff}.hd span{font-size:26px;color:${TV.txt}}
-.tag{position:absolute;font-size:24px;font-family:Arial;padding:6px 12px;border-radius:6px;color:#fff}
-.rs{position:absolute;left:50px;top:1150px;font-size:24px;color:${TV.txt};font-family:Arial}`;
-export const F04 = (x) => { const s = x.S.CLVE, cs = velas(s), a24 = vals(last24(s)), hi = Math.max(...a24), lo = Math.min(...a24);
-  const ch = svgVelas(cs, 980, 640, { k: "CLVE", extra: [[hi, lo]] }), r = rsi(vals(s)), rr = r[r.length - 1];
-  const RX = (i) => i * 850 / (r.length - 1), RY = (v) => 10 + (100 - v) / 100 * 180;
+.rate{position:absolute;left:50px;right:50px;top:320px;background:#0E5A2C;border-radius:40px;padding:34px 40px 36px;box-shadow:0 0 0 4px #DEA503}
+.rate .pair{display:flex;align-items:center;gap:6px}.rate .lb{font-size:34px;color:#FFF9EC;margin-top:18px}
+.rate b.num{display:block;font-size:190px;line-height:1;color:#FCE27A;font-family:Arial;font-weight:700;letter-spacing:-4px;margin-top:10px}
+.rate .ch{font-size:34px;font-family:Arial;font-weight:700;margin-top:12px}
+.rs{position:absolute;left:50px;top:1250px;font-size:24px;color:${TV.txt};font-family:Arial}`;
+export const F04 = (x) => { const s = x.S.CLVE, cs = velas(s), a24 = vals(last24(s)), hi = Math.max(...a24), lo = Math.min(...a24), p = cambio24(s);
+  const ch = svgVelas(cs, 980, 400, { k: "CLVE", extra: [[hi, lo]] }), r = rsi(vals(s)), rr = r[r.length - 1];
+  const RX = (i) => i * 850 / (r.length - 1), RY = (v) => 8 + (100 - v) / 100 * 114;
   const nivel = (v, col, t) => `<line x1="0" x2="850" y1="${ch.Y(v)}" y2="${ch.Y(v)}" stroke="${col}" stroke-width="3" stroke-dasharray="14 8"/><text x="10" y="${ch.Y(v) - 10}" font-size="24" fill="${col}" font-family="Arial">${t} ${fmt(v, 4)}</text>`;
   return page(1080, 1920, c04, `<div class="bg"></div>
 <div class="hd"><b>CLP / BS · análisis</b><span>${diaNombre(x.d)} ${fechaCorta(x.d)} · ${x.hh}</span></div>
-<svg style="position:absolute;left:50px;top:330px" width="980" height="680" viewBox="0 0 980 680">${ch.g}${nivel(hi, TV.up, "Máx. 24 h")}${nivel(lo, TV.dn, "Mín. 24 h")}</svg>
+<div class="rate">${pair(CORR.CLVE, 100, "#DEA503")}<div class="lb">Tasa de las ${x.hh} · Bs por cada 1 CLP</div><b class="num">${rateTxt(x.Rs.CLVE)}</b><div class="ch" style="color:${pcol(p)}">${pct(p)} en 24 h</div></div>
+<svg style="position:absolute;left:50px;top:830px" width="980" height="420" viewBox="0 0 980 420">${ch.g}${nivel(hi, TV.up, "Máx. 24 h")}${nivel(lo, TV.dn, "Mín. 24 h")}</svg>
 <div class="rs">RSI 14 (horario): <b style="color:${TV.rsi}">${fmt(rr ?? 50, 1)}</b></div>
-<svg style="position:absolute;left:50px;top:1190px" width="980" height="210" viewBox="0 0 980 210"><rect x="0" y="${RY(70)}" width="850" height="${RY(30) - RY(70)}" fill="rgba(126,87,194,.12)"/>
+<svg style="position:absolute;left:50px;top:1290px" width="980" height="130" viewBox="0 0 980 130"><rect x="0" y="${RY(70)}" width="850" height="${RY(30) - RY(70)}" fill="rgba(126,87,194,.12)"/>
 <line x1="0" x2="850" y1="${RY(70)}" y2="${RY(70)}" stroke="${TV.grid}" stroke-width="2" stroke-dasharray="6 6"/><line x1="0" x2="850" y1="${RY(30)}" y2="${RY(30)}" stroke="${TV.grid}" stroke-width="2" stroke-dasharray="6 6"/>
 ${linea(r, RX, RY, TV.rsi, 4)}<text x="870" y="${RY(70) + 8}" font-size="22" fill="${TV.txt}" font-family="Arial">70</text><text x="870" y="${RY(30) + 8}" font-size="22" fill="${TV.txt}" font-family="Arial">30</text></svg>
-<div style="position:absolute;left:50px;right:50px;top:1420px;font-size:34px;color:#fff">Tasa de las ${x.hh}: <b class="num" style="color:#FCE27A">${unitLine(CORR.CLVE, x.Rs.CLVE)}</b></div>
 ${foot(1500)}${legal(x.hh, TV.txt, 130)}`); };
 
 // F05 · cinta de cotizaciones + área (Chile → Colombia)
