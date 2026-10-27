@@ -203,7 +203,7 @@ const c08 = `.bg{position:absolute;inset:0;background:#FFF9EC;color:#0E5A2C}
 .px{position:absolute;left:0;right:0;top:680px;text-align:center;font-size:130px;font-family:Arial;font-weight:700;color:#0E5A2C}.px small{display:block;font-size:38px;font-weight:400;color:#5c6a60;margin-top:6px}`;
 export const F08 = (x) => { const s = x.S.COVE.slice(-24), a = vals(s), [mn, mx] = rango(a), Y = escala(mn, mx, 360), X = (i) => i * 960 / (a.length - 1);
   return page(1080, 1920, c08, `<div class="bg"></div>
-<div class="h">Colombia → Venezuela, <b>así va la tasa</b></div>
+<div class="h"><b>Así va la tasa</b></div>
 ${pair(CORR.COVE, 130, "#00913E")}
 <div class="px num">${rateTxt(x.Rs.COVE)}<small>${unitLine(CORR.COVE, x.Rs.COVE)} · ${x.hh}</small></div>
 <svg style="position:absolute;left:60px;top:980px" width="960" height="400" viewBox="0 0 960 400">${linea(a, X, Y, "#00913E", 6)}<circle cx="${X(a.length - 1)}" cy="${Y(a[a.length - 1])}" r="13" fill="#DEA503"/>${horasEje(s, X, 360, "#5c6a60", 6)}</svg>
