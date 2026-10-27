@@ -7,6 +7,7 @@ import { execSync } from "node:child_process";
 import { getAll, getAllSeries } from "./data.mjs";
 import { SETS, CORRIDOR_ORDER, listo } from "./sets.mjs";
 import { aplicarTramos } from "./tasa_set.mjs";
+import { enviarImagenes } from "./telegram.mjs";
 import { rateTxt, fechaCorta } from "./disenos.mjs";
 import { renderPage, closeBrowser } from "./render.mjs";
 import { createPost, deletePost } from "./metricool.mjs";
@@ -106,7 +107,7 @@ async function main() {
   for (const [i, pos] of slot.pos.entries()) {
     const file = `${key}_${pos}_${CORRIDOR_ORDER[pos]}_${set}${variacion}_story.jpg`;
     await renderPage(S0.stories[pos](x), { width: 1080, height: 1920, out: path.join("out", file) });
-    files.push({ kind: "STORY", file, offset: i * 30 });
+    files.push({ kind: "STORY", file, offset: i * 30, corredor: CORRIDOR_ORDER[pos] });
   }
   if (slot.feed) {
     const file = `${key}_feed_${set}${variacion}.jpg`;
@@ -124,6 +125,7 @@ async function main() {
     // hora local de Chile (Metricool la interpreta con la zona America/Santiago): ahora + retraso, o la media hora si es la 2.ª historia del sábado
     const real = nowLocal(Date.now() + cfg.publishDelayMinutes * 60000);
     const when = forced ? stamp(real) : `${now.date}T${pad(now.h)}:${pad(Math.min(59, Math.max(real.h > now.h ? 59 : real.mi, f.offset)))}:00`;
+    f.when = when;
     for (const network of cfg.networks[f.kind === "STORY" ? "story" : "post"]) {
       try {
         const p = await createPost({ imageUrl: url, type: f.kind, when, timezone: TZ, text: f.text || "", network, draft: DRAFT });
@@ -142,6 +144,11 @@ async function main() {
   fs.writeFileSync(statePath, JSON.stringify(state, null, 2));
   prune();
   gitPush(`estado ${key}`);
+  // copia para el operador de WhatsApp: las mismas imágenes, como archivo, al grupo de operaciones de Telegram
+  try {
+    const n = await enviarImagenes(files.map((f) => ({ ...f, hora: f.when.slice(11, 16) })));
+    if (n) summary(`📨 ${n} imagen(es) enviadas al grupo de operaciones de Telegram`);
+  } catch (e) { summary(`⚠️ Telegram: ${String(e.message).slice(0, 200)}`); }
 }
 
 try { await main(); } catch (e) { console.error("ERROR:", e.message); summary("❌ ERROR: " + String(e.message).slice(0, 900)); process.exitCode = 1; } finally { await closeBrowser(); }
