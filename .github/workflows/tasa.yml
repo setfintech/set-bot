@@ -65,7 +65,7 @@ jobs:
         env:
           METRICOOL_TOKEN: ${{ secrets.METRICOOL_TOKEN }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          TG_OPS_CHAT: ${{ secrets.TG_OPS_CHAT }}
+          TG_OPS_CHAT: ${{ secrets.TG_OPS_CHAT || '-5502260367' }} # grupo "SET Tasas diarias" (no es una clave)
           METRICOOL_USER_ID: ${{ secrets.METRICOOL_USER_ID }}
           METRICOOL_BLOG_ID: ${{ secrets.METRICOOL_BLOG_ID }}
           EVENT: ${{ github.event_name }}
