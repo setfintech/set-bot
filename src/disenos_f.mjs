@@ -183,8 +183,8 @@ ${foot(1420)}${legal(x.hh, TV.txt, 140)}`); };
 const c07 = `.bg{position:absolute;inset:0;background:${TV.bg};color:#fff}
 .h{position:absolute;left:60px;right:60px;top:250px;display:flex;align-items:center;gap:24px;font-size:44px;color:${TV.txt}}
 .px{position:absolute;left:60px;right:60px;top:380px;font-size:120px;font-weight:700;line-height:1}
-.ch{position:absolute;left:60px;right:60px;top:570px;font-size:48px;font-weight:700}
-.ob{position:absolute;left:60px;right:60px;top:1330px;font-size:36px;line-height:1.4;color:#fff}`;
+.ch{position:absolute;left:60px;right:60px;top:640px;font-size:48px;font-weight:700}
+.ob{position:absolute;left:60px;right:60px;top:1390px;font-size:36px;line-height:1.4;color:#fff}`;
 export const F07 = (x) => { const s = last24(x.S.CLVE), a = vals(s), cur = a[a.length - 1], p = cambio24(x.S.CLVE), col = pcol(p), mn0 = Math.min(...a), mx0 = Math.max(...a);
   const [mn, mx] = rango(a), Y = escala(mn, mx, 600), X = (i) => i * 960 / (a.length - 1);
   const pts = a.map((v, i) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`);
@@ -192,7 +192,7 @@ export const F07 = (x) => { const s = last24(x.S.CLVE), a = vals(s), cur = a[a.l
 <div class="h">${pair(CORR.CLVE, 70, TV.txt)}<span>Chile → Venezuela</span></div>
 <div class="px num">${unitLine(CORR.CLVE, x.Rs.CLVE)}</div>
 <div class="ch" style="color:${col}">${pct(p)} <span style="font-size:30px;color:${TV.txt};font-weight:400">últimas 24 h</span></div>
-<svg style="position:absolute;left:60px;top:640px" width="960" height="660" viewBox="0 0 960 660">${rejilla(960, 600, 4, TV.grid)}<path d="M${pts.join(" L")} L${X(a.length - 1)},600 L0,600 Z" fill="${col}" fill-opacity=".15"/>${linea(a, X, Y, col, 5)}<circle cx="${X(a.length - 1)}" cy="${Y(cur)}" r="12" fill="${col}"/>${horasEje(s, X, 600, TV.txt, 6)}</svg>
+<svg style="position:absolute;left:60px;top:710px" width="960" height="660" viewBox="0 0 960 660">${rejilla(960, 600, 4, TV.grid)}<path d="M${pts.join(" L")} L${X(a.length - 1)},600 L0,600 Z" fill="${col}" fill-opacity=".15"/>${linea(a, X, Y, col, 5)}<circle cx="${X(a.length - 1)}" cy="${Y(cur)}" r="12" fill="${col}"/>${horasEje(s, X, 600, TV.txt, 6)}</svg>
 <div class="ob">Máx. 24 h: <b>${fmt(mx0, DEC.CLVE)}</b> · Mín. 24 h: <b>${fmt(mn0, DEC.CLVE)}</b><br>${amtA(CORR.CLVE, 100000)} → <b style="color:#FCE27A">${recv(CORR.CLVE, x.R.CLVE, 100000)}</b></div>
 ${foot(1520)}${legal(x.hh, TV.txt, 140)}`); };
 
