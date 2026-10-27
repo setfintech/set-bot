@@ -38,8 +38,9 @@ function rsi(a, n = 14) {
 const boll = (a, n = 12, k = 2) => a.map((_, i) => { if (i < n - 1) return null; const w = a.slice(i - n + 1, i + 1), m = w.reduce((s, v) => s + v, 0) / n, sd = Math.sqrt(w.reduce((s, v) => s + (v - m) ** 2, 0) / n); return { m, up: m + k * sd, lo: m - k * sd }; });
 // velas de 2 h a partir de los registros horarios: apertura = cierre de la vela anterior
 function velas(s) {
-  const out = []; let o = s[0].v;
-  for (let i = 1; i + 1 < s.length; i += 2) { const p = [o, s[i].v, s[i + 1].v]; out.push({ o, c: s[i + 1].v, h: Math.max(...p), l: Math.min(...p), hh: s[i + 1].hh }); o = s[i + 1].v; }
+  // se agrupa desde el final para que la última vela cierre SIEMPRE en la tasa actual
+  const ini = (s.length - 1) % 2, out = []; let o = s[ini].v;
+  for (let i = ini + 1; i + 1 < s.length; i += 2) { const p = [o, s[i].v, s[i + 1].v]; out.push({ o, c: s[i + 1].v, h: Math.max(...p), l: Math.min(...p), hh: s[i + 1].hh }); o = s[i + 1].v; }
   return out;
 }
 
