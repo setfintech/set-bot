@@ -180,19 +180,21 @@ ${s.slice(1).map((p, i) => (i % 6 === 0 ? `<text x="${i * bw}" y="${H}" font-siz
 ${foot(1420)}${legal(x.hh, TV.txt, 140)}`); };
 
 // F07 · medias móviles de 6 y 12 horas (Chile → Venezuela)
-const c07 = `.bg{position:absolute;inset:0;background:#fff;color:#1F2A22}
-.h{position:absolute;left:60px;right:60px;top:240px;font-size:60px;line-height:1.1;color:#0E5A2C}.h b{color:#00913E}
-.lg{position:absolute;left:60px;top:420px;display:flex;gap:30px;font-size:26px;font-family:Arial}
-.ob{position:absolute;left:60px;right:60px;top:1230px;background:#F1F8EE;border-radius:24px;padding:26px 30px;font-size:34px;line-height:1.35;color:#0E5A2C}`;
-export const F07 = (x) => { const s = last24(x.S.CLVE.slice(-36)), all = vals(x.S.CLVE.slice(-36)), m6 = sma(all, 6).slice(-24), m12 = sma(all, 12).slice(-24), a = vals(s);
-  const [mn, mx] = rango([...a, ...m6, ...m12]), Y = escala(mn, mx, 700), X = (i) => i * 960 / (a.length - 1), cur = a[a.length - 1], v12 = m12[m12.length - 1];
-  const frase = cur >= v12 ? `La tasa está <b>por encima</b> de su promedio de las últimas 12 horas (${fmt(v12, 4)}).` : `La tasa está <b>por debajo</b> de su promedio de las últimas 12 horas (${fmt(v12, 4)}).`;
+const c07 = `.bg{position:absolute;inset:0;background:${TV.bg};color:#fff}
+.h{position:absolute;left:60px;right:60px;top:250px;display:flex;align-items:center;gap:24px;font-size:44px;color:${TV.txt}}
+.px{position:absolute;left:60px;right:60px;top:380px;font-size:120px;font-weight:700;line-height:1}
+.ch{position:absolute;left:60px;right:60px;top:530px;font-size:48px;font-weight:700}
+.ob{position:absolute;left:60px;right:60px;top:1260px;font-size:36px;line-height:1.4;color:#fff}`;
+export const F07 = (x) => { const s = last24(x.S.CLVE), a = vals(s), cur = a[a.length - 1], p = cambio24(x.S.CLVE), col = pcol(p), mn0 = Math.min(...a), mx0 = Math.max(...a);
+  const [mn, mx] = rango(a), Y = escala(mn, mx, 600), X = (i) => i * 960 / (a.length - 1);
+  const pts = a.map((v, i) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`);
   return page(1080, 1920, c07, `<div class="bg"></div>
-<div class="h">Chile → Venezuela con <b>medias móviles</b></div>
-<div class="lg"><span style="color:#0E5A2C">━ Tasa</span><span style="color:${TV.ma}">━ Media 6 h</span><span style="color:${TV.ma2}">━ Media 12 h</span></div>
-<svg style="position:absolute;left:60px;top:470px" width="960" height="740" viewBox="0 0 960 740">${rejilla(960, 700, 4, "#eef2ef")}${linea(m12, X, Y, TV.ma2, 5)}${linea(m6, X, Y, TV.ma, 5)}${linea(a, X, Y, "#0E5A2C", 6)}<circle cx="${X(a.length - 1)}" cy="${Y(cur)}" r="12" fill="#DEA503"/>${horasEje(s, X, 700, "#5c6a60", 6)}</svg>
-<div class="ob">Tasa de las ${x.hh}: <b class="num">${unitLine(CORR.CLVE, x.Rs.CLVE)}</b><br>${frase}</div>
-${foot(1480)}${legal(x.hh, "#5c6a60", 140)}`); };
+<div class="h">${pair(CORR.CLVE, 70, TV.txt)}<span>Chile → Venezuela</span></div>
+<div class="px num">${unitLine(CORR.CLVE, x.Rs.CLVE)}</div>
+<div class="ch" style="color:${col}">${pct(p)} <span style="font-size:30px;color:${TV.txt};font-weight:400">últimas 24 h</span></div>
+<svg style="position:absolute;left:60px;top:640px" width="960" height="660" viewBox="0 0 960 660">${rejilla(960, 600, 4, TV.grid)}<path d="M${pts.join(" L")} L${X(a.length - 1)},600 L0,600 Z" fill="${col}" fill-opacity=".15"/>${linea(a, X, Y, col, 5)}<circle cx="${X(a.length - 1)}" cy="${Y(cur)}" r="12" fill="${col}"/>${horasEje(s, X, 600, TV.txt, 6)}</svg>
+<div class="ob">Máx. 24 h: <b>${fmt(mx0, DEC.CLVE)}</b> · Mín. 24 h: <b>${fmt(mn0, DEC.CLVE)}</b><br>${amtA(CORR.CLVE, 100000)} → <b style="color:#FCE27A">${recv(CORR.CLVE, x.R.CLVE, 100000)}</b></div>
+${foot(1520)}${legal(x.hh, TV.txt, 140)}`); };
 
 // F08 · bandas de Bollinger (Colombia → Venezuela)
 const c08 = `.bg{position:absolute;inset:0;background:${TV.bg};color:#d1d4dc}
