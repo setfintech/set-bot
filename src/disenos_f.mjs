@@ -183,8 +183,8 @@ ${foot(1420)}${legal(x.hh, TV.txt, 140)}`); };
 const c07 = `.bg{position:absolute;inset:0;background:${TV.bg};color:#fff}
 .h{position:absolute;left:60px;right:60px;top:250px;display:flex;align-items:center;gap:24px;font-size:44px;color:${TV.txt}}
 .px{position:absolute;left:60px;right:60px;top:380px;font-size:120px;font-weight:700;line-height:1}
-.ch{position:absolute;left:60px;right:60px;top:530px;font-size:48px;font-weight:700}
-.ob{position:absolute;left:60px;right:60px;top:1260px;font-size:36px;line-height:1.4;color:#fff}`;
+.ch{position:absolute;left:60px;right:60px;top:570px;font-size:48px;font-weight:700}
+.ob{position:absolute;left:60px;right:60px;top:1330px;font-size:36px;line-height:1.4;color:#fff}`;
 export const F07 = (x) => { const s = last24(x.S.CLVE), a = vals(s), cur = a[a.length - 1], p = cambio24(x.S.CLVE), col = pcol(p), mn0 = Math.min(...a), mx0 = Math.max(...a);
   const [mn, mx] = rango(a), Y = escala(mn, mx, 600), X = (i) => i * 960 / (a.length - 1);
   const pts = a.map((v, i) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`);
