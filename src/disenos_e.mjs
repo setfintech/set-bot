@@ -28,8 +28,8 @@ ${phoneSET("left:420px;top:120px;width:220px;height:470px;transform:rotate(4deg)
 <div style="position:absolute;left:80px;top:380px;transform:rotate(-3deg)">${pill("Superenvios.app", "font-size:46px")}</div>
 <div class="panel"></div><div class="tt"><b>Tasa de cambio</b><span>${fechaCorta(x.d)} · ${horario(x.d)}</span></div>
 <div class="box" style="top:830px;background:#F1F8EE">${pair(CORR.CLVE, 116)}<b class="num">${rateTxt(x.Rs.CLVE)}</b><small>Bs por cada 1 CLP · tasa de las ${x.hh}</small></div>
-<div class="box" style="top:1210px;padding:30px 44px;font-size:33px;line-height:1.6;color:#187D41;background:#FFF9EC">${CORR.CLVE.ej.map((n) => `<div style="display:flex;justify-content:space-between"><span>${amtA(CORR.CLVE, n)}</span><b style="font-size:33px;padding:0;display:inline;color:#0E5A2C">${recv(CORR.CLVE, x.R.CLVE, n)}</b></div>`).join("")}</div>
-${ico("bills", "left:20px;top:1440px;width:280px;height:230px;transform:rotate(12deg)")}
+<div class="box" style="top:1290px;padding:30px 44px;font-size:33px;line-height:1.6;color:#187D41;background:#FFF9EC">${CORR.CLVE.ej.map((n) => `<div style="display:flex;justify-content:space-between"><span>${amtA(CORR.CLVE, n)}</span><b style="font-size:33px;padding:0;display:inline;color:#0E5A2C">${recv(CORR.CLVE, x.R.CLVE, n)}</b></div>`).join("")}</div>
+${ico("bills", "left:20px;top:1500px;width:280px;height:230px;transform:rotate(12deg)")}
 ${legal(x.hh, "#0E5A2C", 150)}`);
 
 // E02 · noticiero de TV con "última hora"

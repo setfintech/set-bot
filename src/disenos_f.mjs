@@ -136,12 +136,12 @@ export const F04 = (x) => { const s = x.S.CLVE, cs = velas(s), a24 = vals(last24
   return page(1080, 1920, c04, `<div class="bg"></div>
 <div class="hd"><b>CLP / BS · análisis</b><span>${diaNombre(x.d)} ${fechaCorta(x.d)} · ${x.hh}</span></div>
 <div class="rate">${pair(CORR.CLVE, 100, "#DEA503")}<div class="lb">Tasa de las ${x.hh} · Bs por cada 1 CLP</div><b class="num">${rateTxt(x.Rs.CLVE)}</b><div class="ch" style="color:${pcol(p)}">${pct(p)} en 24 h</div></div>
-<svg style="position:absolute;left:50px;top:830px" width="980" height="420" viewBox="0 0 980 420">${ch.g}${nivel(hi, TV.up, "Máx. 24 h")}${nivel(lo, TV.dn, "Mín. 24 h")}</svg>
-<div class="rs">RSI 14 (horario): <b style="color:${TV.rsi}">${fmt(rr ?? 50, 1)}</b></div>
-<svg style="position:absolute;left:50px;top:1290px" width="980" height="130" viewBox="0 0 980 130"><rect x="0" y="${RY(70)}" width="850" height="${RY(30) - RY(70)}" fill="rgba(126,87,194,.12)"/>
+<svg style="position:absolute;left:50px;top:905px" width="980" height="420" viewBox="0 0 980 420">${ch.g}${nivel(hi, TV.up, "Máx. 24 h")}${nivel(lo, TV.dn, "Mín. 24 h")}</svg>
+<div class="rs" style="top:1325px">RSI 14 (horario): <b style="color:${TV.rsi}">${fmt(rr ?? 50, 1)}</b></div>
+<svg style="position:absolute;left:50px;top:1365px" width="980" height="130" viewBox="0 0 980 130"><rect x="0" y="${RY(70)}" width="850" height="${RY(30) - RY(70)}" fill="rgba(126,87,194,.12)"/>
 <line x1="0" x2="850" y1="${RY(70)}" y2="${RY(70)}" stroke="${TV.grid}" stroke-width="2" stroke-dasharray="6 6"/><line x1="0" x2="850" y1="${RY(30)}" y2="${RY(30)}" stroke="${TV.grid}" stroke-width="2" stroke-dasharray="6 6"/>
 ${linea(r, RX, RY, TV.rsi, 4)}<text x="870" y="${RY(70) + 8}" font-size="22" fill="${TV.txt}" font-family="Arial">70</text><text x="870" y="${RY(30) + 8}" font-size="22" fill="${TV.txt}" font-family="Arial">30</text></svg>
-${foot(1500)}${legal(x.hh, TV.txt, 130)}`); };
+${foot(1540)}${legal(x.hh, TV.txt, 130)}`); };
 
 // F05 · cinta de cotizaciones + área (Chile → Colombia)
 const c05 = `.bg{position:absolute;inset:0;background:#F4F7F5}

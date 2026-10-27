@@ -80,7 +80,7 @@ export const B04 = (x) => { const c = CORR.CLVE, r = x.R.CLVE; return page(1080,
 <div class="n" style="top:720px"><img src="assets/logos/iso_blanco.png"><div style="flex:1"><div class="t"><span>SÚPER ENVÍOS TODAY</span><span>ahora</span></div><div class="m">Tasa de las ${x.hh}: <b class="num">${unitLine(c, x.Rs.CLVE)}</b></div></div></div>
 <div class="n" style="top:960px"><img src="assets/logos/iso_blanco.png"><div style="flex:1"><div class="t"><span>SÚPER ENVÍOS TODAY</span><span>ahora</span></div><div class="m">Si envías ${amtA(c, 100000)}, tu familia recibe <b>${recv(c, r, 100000)}</b> 💚</div></div></div>
 <div class="n" style="top:1220px;opacity:.85"><img src="assets/logos/iso_blanco.png"><div style="flex:1"><div class="t"><span>SÚPER ENVÍOS TODAY</span><span>ahora</span></div><div class="m">Comisión del servicio incluida en la tasa. Se procesa de 15 min a 2 h.</div></div></div>
-${foot(1500, "Envía en superenvios.app")}${legal(x.hh, "#fff", 140)}`); };
+${foot(1535, "Envía en superenvios.app")}${legal(x.hh, "#fff", 140)}`); };
 
 // B05 · entrada de cine (Chile → Colombia)
 const c05 = `.bg{position:absolute;inset:0;background:#1a1a1a}
@@ -119,7 +119,7 @@ ${foot(1500)}${legal(x.hh, "#0E5A2C", 140)}`); };
 // B07 · barras de montos (Chile → Venezuela)
 const c07 = `.bg{position:absolute;inset:0;background:#FFF9EC}
 .h{position:absolute;left:80px;right:80px;top:240px;color:#0E5A2C;font-size:70px;line-height:1.1}.h b{color:#00913E}
-.rt{position:absolute;left:80px;top:440px;color:#187D41;font-size:40px}.rt b{color:#00913E;font-size:60px}
+.rt{position:absolute;left:80px;top:430px;color:#FFF9EC;font-size:38px;background:#0E5A2C;border-radius:24px;padding:14px 30px 18px;box-shadow:0 10px 24px rgba(14,90,44,.25)}.rt b{color:#FCE27A;font-size:60px}
 .bars{position:absolute;left:80px;right:80px;top:600px;height:860px;display:flex;align-items:flex-end;gap:36px;border-bottom:6px solid #187D41}
 .bars div{flex:1;border-radius:24px 24px 0 0;background:linear-gradient(180deg,#3fae5b,#187D41);position:relative;color:#0E5A2C;text-align:center}
 .bars div b{position:absolute;left:-20px;right:-20px;top:-74px;font-size:36px}.bars div span{position:absolute;left:-10px;right:-10px;bottom:-62px;font-size:28px;color:#5c6a60}`;

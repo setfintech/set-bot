@@ -72,7 +72,7 @@ const c04 = `.bg{position:absolute;inset:0;background:linear-gradient(180deg,#DE
 .mast{position:absolute;left:60px;right:60px;top:220px;font-size:200px;line-height:.9;color:#0E5A2C;letter-spacing:-6px}
 .ed{position:absolute;right:60px;top:240px;text-align:right;font-size:26px;color:#0E5A2C;line-height:1.4}
 .hl{position:absolute;left:60px;top:470px;width:520px;color:#fff;text-shadow:0 4px 0 rgba(14,90,44,.45)}
-.hl small{display:block;font-size:34px;color:#0E5A2C;text-shadow:none}.hl b{display:block;white-space:nowrap;font-size:84px;line-height:1;margin:10px 0}
+.hl small{display:block;font-size:34px;color:#0E5A2C;text-shadow:none}.hl b{display:inline-block;white-space:nowrap;font-size:80px;line-height:1;margin:12px 0 4px;background:#EAF5E4;color:#00913E;text-shadow:none;border:3px solid #CFE6C4;border-radius:22px;padding:10px 24px 16px}
 .hl p{font-size:36px;line-height:1.3;color:#0E5A2C;text-shadow:none;margin-top:16px}
 .tag{position:absolute;left:60px;top:1060px;width:440px;background:#E0302B;color:#fff;border-radius:26px;padding:24px 30px;font-size:34px;line-height:1.3;transform:rotate(-3deg)}`;
 export const C04 = (x) => { const c = CORR.CLVE, r = x.R.CLVE; return page(1080, 1920, c04, `<div class="bg"></div>
@@ -123,10 +123,10 @@ const c07 = `.bg{position:absolute;inset:0;background:#FFF9EC}
 .it b{display:block;font-size:42px}.it small{display:block;font-size:32px;color:#5c6a60;margin-top:4px}
 .disc{position:absolute;left:120px;right:120px;top:1340px;background:#FCEFC2;border:3px dashed #DEA503;border-radius:22px;padding:20px 28px;text-align:center;font-size:28px;color:#7a5a00}`;
 export const C07 = (x) => { const c = CORR.CLVE, r = x.R.CLVE; return page(1080, 1920, c07, `<div class="bg"></div>
-${plusses([[920, 1440, 100, "plus", 10]])}
+${plusses([[930, 460, 90, "plus", 10]])}
 <div class="h">Checklist para enviar <b>hoy</b></div>
 <div class="list">
-<div class="it"><i>✓</i><div><b>Revisa la tasa</b><small class="num">${unitLine(c, x.Rs.CLVE)}</small></div></div>
+<div class="it"><i>✓</i><div><b>Revisa la tasa</b><small class="num" style="display:inline-block;margin-top:8px;font-size:40px;font-weight:700;color:#0E5A2C;background:#FCEFC2;border-radius:12px;padding:4px 16px 8px">${unitLine(c, x.Rs.CLVE)}</small></div></div>
 <div class="it"><i>✓</i><div><b>Elige el monto</b><small>${amtA(c, 100000)} → ${recv(c, r, 100000)}</small></div></div>
 <div class="it"><i>✓</i><div><b>Agrega a tu destinatario</b><small>queda guardado para la próxima</small></div></div>
 <div class="it"><i>✓</i><div><b>Transfiere y adjunta el comprobante</b><small>de 15 minutos a 2 horas</small></div></div>
@@ -175,7 +175,7 @@ export const C10 = (x) => { const c = CORR.CLVE, r = x.R.CLVE; return page(1080,
 <div class="tl"><i></i><i></i><i class="on"></i></div>
 <div class="h">Todavía en <b>verde</b></div><div class="p">Hoy recibimos envíos hasta las <b>${cierre(x.d)}</b>. ¡Aprovecha!</div>
 <div class="rt"><small>Tasa de las ${x.hh} · Chile → Venezuela</small><b class="num">${unitLine(c, x.Rs.CLVE)}</b><small>${amtA(c, 100000)} → ${recv(c, r, 100000)}</small></div>
-${foot(1500, "Envía en superenvios.app")}${legal(x.hh, "#fff", 150)}`); };
+${foot(1545, "Envía en superenvios.app")}${legal(x.hh, "#fff", 150)}`); };
 
 // F3 · feed (Chile → Venezuela): afiche tipográfico con persona en círculo
 const cf3 = `.bg{position:absolute;inset:0;background:#0E5A2C}

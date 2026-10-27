@@ -3,3 +3,6 @@ node_modules/
 page.html
 preview/
 out/*.tmp
+_revision/
+_medir.mjs
+_m.html

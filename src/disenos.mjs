@@ -73,7 +73,7 @@ html,body{overflow:hidden;font-family:"Comfortaa",sans-serif;font-weight:700;col
 #root .tramos.fila{flex-direction:row;flex-wrap:wrap}#root .tramos.fila span{flex:1 1 0}#root .tramos .tt{flex:0 0 100%;font-style:normal;font-size:.82em;opacity:.9;padding:0 4px}
 #root .tramos.claro span{background:rgba(255,255,255,.16);color:#fff;border:2px solid rgba(255,255,255,.28)}#root .tramos.claro b{color:#FFD45C}
 #root .tramos.oscuro span{background:#EAF5E4;color:#1F2A22;border:2px solid #CFE6C4}#root .tramos.oscuro b{color:#00913E}
-#root .tramos.oscuro .tt{color:#1F2A22}#root .tramos.claro .tt{color:#fff}
+#root .tramos.oscuro .tt{color:#1F2A22}#root .tramos.dest span{background:#DEA503;color:#0E5A2C;border:2px solid #FCE27A}#root .tramos.dest b{color:#0E5A2C}#root .tramos.dest .tt{color:#fff}#root .tramos.claro .tt{color:#fff}
 .legal{position:absolute;left:80px;right:80px;bottom:150px;font-size:22px;line-height:1.35;font-weight:400;opacity:.85;text-align:center}
 .ph{position:absolute;border-radius:44px;background:linear-gradient(145deg,#3b3f45,#111316);padding:12px;box-shadow:0 30px 50px rgba(0,40,15,.35),inset 0 0 0 3px #555a61}
 .ph-scr{width:100%;height:100%;border-radius:34px;background:linear-gradient(170deg,#3fae5b 0%,#1f8a41 100%);display:grid;place-items:center}
@@ -104,13 +104,13 @@ ${phoneSET("left:150px;top:256px;width:236px;height:520px;transform:rotate(-2deg
 <div style="position:absolute;left:62px;top:596px;transform:rotate(-3deg)">${pill("Superenvios.app", "font-size:48px")}</div>
 <div class="tt"><b>Tasa de<br>cambio</b><span>${fechaCorta(x.d)}</span><span style="margin-top:6px">${horario(x.d)}</span></div>
 <div class="box" style="top:832px;height:392px">${pair(CORR.CLVE, 126)}<div class="rt" style="${x.T ? "padding-top:150px;line-height:1.45" : ""}">${rows}</div></div>
-<div class="box" style="top:1272px;height:270px">${pair({ a: "VE", b: "CL" }, 126)}<div class="rt num" style="padding:140px 0 0;font-size:72px;text-align:center">${x.mostrarVECL && x.Rs.VECL ? rateTxt(x.Rs.VECL, ".") : ""}</div></div>
+<div class="box" style="top:1272px;height:270px">${pair({ a: "VE", b: "CL" }, 126)}<div class="rt num" style="padding:140px 0 0;font-size:72px;text-align:center">${x.mostrarVECL && x.Rs.VECL ? rateTxt(x.Rs.VECL, ".") : '<span style="display:block;width:470px;margin-left:60px;text-align:left;font-size:42px;line-height:1.25">Preguntar tasa<br>por interno</span>'}</div></div>
 ${ico("bills", "left:672px;top:1376px;width:330px;height:270px;transform:rotate(-8deg)")}`);
 };
 
 // S02 · variación del modelo: mostaza, teléfono a la derecha, una sola caja grande con montos de ejemplo
 const css02 = `.bg{position:absolute;inset:0;background:radial-gradient(1000px 1100px at 30% 30%,#f2bd1c 0%,#DEA503 60%,#c99402 100%)}
-.panel{position:absolute;left:120px;top:520px;width:840px;height:1060px;border-radius:44px;background:#187D41;box-shadow:18px 22px 0 #0E5A2C}
+.panel{position:absolute;left:120px;top:520px;width:840px;height:1150px;border-radius:44px;background:#187D41;box-shadow:18px 22px 0 #0E5A2C}
 .tt{position:absolute;left:170px;top:580px;line-height:1.15}.tt b{display:block;font-size:66px}.tt span{display:block;font-size:38px;font-weight:400;margin-top:12px}
 .box{position:absolute;left:170px;top:870px;width:740px;background:#fff;border-radius:30px;color:#187D41;padding:60px 54px 40px}
 .box .pair{position:absolute;right:40px;top:-60px}
