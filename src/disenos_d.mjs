@@ -111,7 +111,7 @@ export const D06 = (x) => { const c = CORR.PEVE, r = x.R.PEVE; return page(1080,
 <line x1="450" y1="470" x2="690" y2="230" stroke="#FCE27A" stroke-width="16" stroke-linecap="round"/><circle cx="450" cy="470" r="34" fill="#FCE27A"/>
 <text x="90" y="555" text-anchor="middle" font-size="30" fill="#9fb5a6" font-family="Comfortaa">0 km/h</text><text x="810" y="555" text-anchor="middle" font-size="30" fill="#9fb5a6" font-family="Comfortaa">333 km/h</text></svg>
 <div class="v"><small>Con ${amtA(c, 100)} tu familia recibe</small><b class="num">${recv(c, r, 100)}</b></div>
-<div class="rt"><span class="num">${unitLine(c, x.Rs.PEVE)}</span> · ${x.hh}<br><span style="font-size:30px;opacity:.85">Tu envío se procesa de 15 minutos a 3 horas</span></div>
+<div class="rt"><span class="num">${unitLine(c, x.Rs.PEVE)}</span> · ${x.hh}<br><span style="font-size:30px;opacity:.85">Tu envío se procesa de 15 minutos a 2 horas</span></div>
 <div style="position:absolute;right:90px;top:430px;display:flex;gap:8px">${sqFlag("PE", 70)}${sqFlag("VE", 70)}</div>
 ${foot(1500)}${legal(x.hh, "#9fb5a6", 130)}`); };
 

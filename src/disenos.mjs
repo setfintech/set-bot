@@ -11,8 +11,8 @@ const MES = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct
 const DIA = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
 export const fechaCorta = (d) => `${d.getUTCDate()} ${MES[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 export const diaNombre = (d) => DIA[d.getUTCDay()];
-export const horario = (d) => (d.getUTCDay() === 6 ? "9 am a 3:30 pm" : "9 am a 7 pm");
-export const cierre = (d) => (d.getUTCDay() === 6 ? "15:30" : "19:00");
+export const horario = (d) => (d.getUTCDay() === 6 ? "9 am a 3:30 pm" : "9 am a 6:45 pm");
+export const cierre = (d) => (d.getUTCDay() === 6 ? "15:30" : "18:45");
 
 // ---------- corredores ----------
 export const CORR = {
@@ -24,8 +24,12 @@ export const CORR = {
 };
 const amtA = (c, n) => (c.simA ? `${c.simA} ${fmt(n)}` : `${fmt(n)} ${c.ua}`);
 const amtB = (c, n) => (c.sim ? `${c.sim} ${fmt(n, c.recDec)}` : `${fmt(n, c.recDec)} ${c.ub}`);
-// tasa tal cual viene de la API (sin redondear; solo se quitan ceros sobrantes). sep "," (español) o "." (modelo actual de SET)
-export const rateTxt = (r, sep = ",") => { let t = (typeof r === "string" ? r : String(r)); if (t.includes(".")) t = t.replace(/0+$/, "").replace(/\.$/, ""); return sep === "," ? t.replace(".", ",") : t; };
+// tasa tal cual viene de la API (sin redondear; solo se quitan ceros sobrantes de más de 4 decimales). sep "," (español) o "." (modelo actual de SET)
+// Chile → Venezuela ya llega cortada a 4 decimales (tasa_set.mjs) y se muestra así: 0,9250.
+export const rateTxt = (r, sep = ",") => { let t = (typeof r === "string" ? r : String(r)); if (/\.\d{5,}$/.test(t)) t = t.replace(/0+$/, "").replace(/\.$/, ""); return sep === "," ? t.replace(".", ",") : t; };
+// tramos de Chile → Venezuela (x.T de tasa_set.mjs): bloque chico para no romper el diseño. v = "claro" (fondo verde/oscuro) u "oscuro" (fondo blanco/crema)
+// v puede llevar "fila" (los dos tramos en una línea) y titulo (para las piezas con todos los corredores).
+export const tramos = (x, v = "claro", style = "", titulo = "", sep = ",") => x.T ? `<div class="tramos ${v}" style="${style}">${titulo ? `<i class="tt">${titulo}</i>` : ""}<span>Desde 250.000 CLP <b>${rateTxt(x.T.t250, sep)}</b></span><span>Desde 500.000 CLP <b>${rateTxt(x.T.t500, sep)}</b></span></div>` : "";
 export const unitLine = (c, r) => `1 ${c.ua} = ${rateTxt(r)} ${c.ub}`;
 export const recv = (c, r, n) => amtB(c, n * r);
 
@@ -63,6 +67,13 @@ html,body{overflow:hidden;font-family:"Comfortaa",sans-serif;font-weight:700;col
 .person{position:absolute;display:block;filter:drop-shadow(0 30px 40px rgba(0,40,15,.3))}
 .pair{display:flex;align-items:center;gap:6px}
 .sqf{display:block;flex:none}
+#root .tramos{position:absolute;z-index:20;display:flex;flex-direction:column;gap:8px;font-size:29px;font-weight:600;line-height:1.15}
+#root .tramos span{display:flex;margin:0;font-size:inherit;font-weight:600;line-height:1.15;text-align:left;justify-content:space-between;gap:22px;padding:11px 20px 13px;border-radius:16px;white-space:nowrap}
+#root .tramos b{font-weight:700}
+#root .tramos.fila{flex-direction:row;flex-wrap:wrap}#root .tramos.fila span{flex:1 1 0}#root .tramos .tt{flex:0 0 100%;font-style:normal;font-size:.82em;opacity:.9;padding:0 4px}
+#root .tramos.claro span{background:rgba(255,255,255,.16);color:#fff;border:2px solid rgba(255,255,255,.28)}#root .tramos.claro b{color:#FFD45C}
+#root .tramos.oscuro span{background:#EAF5E4;color:#1F2A22;border:2px solid #CFE6C4}#root .tramos.oscuro b{color:#00913E}
+#root .tramos.oscuro .tt{color:#1F2A22}#root .tramos.claro .tt{color:#fff}
 .legal{position:absolute;left:80px;right:80px;bottom:150px;font-size:22px;line-height:1.35;font-weight:400;opacity:.85;text-align:center}
 .ph{position:absolute;border-radius:44px;background:linear-gradient(145deg,#3b3f45,#111316);padding:12px;box-shadow:0 30px 50px rgba(0,40,15,.35),inset 0 0 0 3px #555a61}
 .ph-scr{width:100%;height:100%;border-radius:34px;background:linear-gradient(170deg,#3fae5b 0%,#1f8a41 100%);display:grid;place-items:center}
@@ -84,13 +95,15 @@ const css01 = `.bg{position:absolute;inset:0;background:radial-gradient(900px 12
 .box .pair{position:absolute;left:-18px;top:-26px}
 .rt{padding:170px 0 40px 66px;font-size:46px;line-height:1.5}`;
 export const S01 = (x) => {
-  const rows = `<div class="num" style="font-size:96px;text-align:center;margin-left:-66px">${rateTxt(x.Rs.CLVE, ".")}</div><div style="font-size:30px;text-align:center;margin-left:-66px;color:#5c7a64;font-family:Arial,sans-serif">Tasa de las ${x.hh}</div>`;
+  // como el modelo de SET: tasa del sistema y los dos tramos por monto, en la misma caja
+  const rows = x.T ? `<div class="num" style="font-size:56px">${rateTxt(x.T.base, ".")}</div><div class="num" style="font-size:40px">${rateTxt(x.T.t250, ".")} <span style="font-size:32px">(mayor a 250.000)</span></div><div class="num" style="font-size:40px">${rateTxt(x.T.t500, ".")} <span style="font-size:32px">(mayor a 500.000)</span></div><div style="font-size:24px;color:#5c7a64;font-family:Arial,sans-serif;margin-top:6px">Tasa de las ${x.hh}</div>`
+    : `<div class="num" style="font-size:96px;text-align:center;margin-left:-66px">${rateTxt(x.Rs.CLVE, ".")}</div><div style="font-size:30px;text-align:center;margin-left:-66px;color:#5c7a64;font-family:Arial,sans-serif">Tasa de las ${x.hh}</div>`;
   return page(1080, 1920, css01, `<div class="bg"></div><div class="panel"></div>
 ${plusses([[96, 140, 170, "plusL"], [90, 296, 92, "plusW"], [205, 270, 90, "plus"]])}
 ${phoneSET("left:150px;top:256px;width:236px;height:520px;transform:rotate(-2deg)")}
 <div style="position:absolute;left:62px;top:596px;transform:rotate(-3deg)">${pill("Superenvios.app", "font-size:48px")}</div>
 <div class="tt"><b>Tasa de<br>cambio</b><span>${fechaCorta(x.d)}</span><span style="margin-top:6px">${horario(x.d)}</span></div>
-<div class="box" style="top:832px;height:392px">${pair(CORR.CLVE, 126)}<div class="rt">${rows}</div></div>
+<div class="box" style="top:832px;height:392px">${pair(CORR.CLVE, 126)}<div class="rt" style="${x.T ? "padding-top:150px;line-height:1.45" : ""}">${rows}</div></div>
 <div class="box" style="top:1272px;height:270px">${pair({ a: "VE", b: "CL" }, 126)}<div class="rt num" style="padding:140px 0 0;font-size:72px;text-align:center">${x.mostrarVECL && x.Rs.VECL ? rateTxt(x.Rs.VECL, ".") : ""}</div></div>
 ${ico("bills", "left:672px;top:1376px;width:330px;height:270px;transform:rotate(-8deg)")}`);
 };
@@ -136,7 +149,7 @@ ${plusses([[880, 420, 110, "plus", 10], [70, 1380, 100, "plusL", -8]])}
 <div class="h">Saludos desde Chile a <b>Perú</b></div>
 <div class="card"><div class="msg">Querida familia: hoy sus<br>${amtA(c, 100000)}<b>${recv(c, r, 100000)}</b>les llegan así. Con cariño 💚</div>
 <div class="stamp">${sqFlag("PE", 140)}</div><div class="pm">SANTIAGO<br>· ${x.hh} ·<br>LIMA</div>
-<div class="lines"><div>${unitLine(c, x.Rs.CLPE)}</div><div>Comisión incluida en la tasa</div><div>De 15 min a 3 horas</div></div></div>
+<div class="lines"><div>${unitLine(c, x.Rs.CLPE)}</div><div>Comisión incluida en la tasa</div><div>De 15 min a 2 horas</div></div></div>
 <div class="foot">${pill("Envía en superenvios.app")}</div>
 <div class="legal" style="color:#5c6a60">Tasa referencial de las ${x.hh}; se actualiza cada hora. La final es la de superenvios.app al enviar.</div>`);
 };
@@ -182,7 +195,7 @@ export const S05 = (x) => {
 <div class="hl">Así rinde hoy tu envío a Colombia</div>
 <div class="big">${sqFlag("CO", 120)}<div><b class="num">${fmt(r * 100000)} COP</b><br><span>por cada ${fmt(100000)} CLP que envías</span></div></div>
 <div class="cols"><div><p>La tasa de las ${x.hh} quedó en <b>${unitLine(c, x.Rs.CLCO)}</b>. Comisión del servicio incluida en la tasa.</p><div class="ln"></div><div class="ln" style="width:80%"></div><div class="ln"></div></div>
-<div><p>Tu envío se procesa de <b>15 minutos a 3 horas</b>, todo desde tu celular.</p><div class="ln" style="width:70%"></div><div class="ln"></div><div class="ln" style="width:85%"></div></div></div>
+<div><p>Tu envío se procesa de <b>15 minutos a 2 horas</b>, todo desde tu celular.</p><div class="ln" style="width:70%"></div><div class="ln"></div><div class="ln" style="width:85%"></div></div></div>
 <div style="margin-top:40px">${pill("Envía en superenvios.app", "font-size:40px")}</div></div>
 <div class="legal" style="color:#5c6a60;bottom:170px">Tasa referencial de las ${x.hh}; se actualiza cada hora. La final es la de superenvios.app al enviar.</div>`);
 };
@@ -229,7 +242,7 @@ ${plusses([[60, 260, 110, "plusW", -10], [930, 1380, 100, "plus", 12]])}
 ${c.ej.map((n) => `<div class="row"><span>Envías ${amtA(c, n)}</span><b>${recv(c, r, n)}</b></div>`).join("")}
 <div class="sep"></div>
 <div class="tot"><span>Tasa: 1 CLP =</span><b class="num">${rateTxt(x.Rs.CLVE)} Bs</b></div>
-<div class="ok">✔ Comisión del servicio incluida en la tasa</div><div class="ok">✔ Se procesa de 15 minutos a 3 horas</div>
+<div class="ok">✔ Comisión del servicio incluida en la tasa</div><div class="ok">✔ Se procesa de 15 minutos a 2 horas</div>
 <div style="margin-top:26px">${barcode()}</div></div>
 <div style="position:absolute;left:0;right:0;top:1560px;text-align:center">${pill("Envía en superenvios.app")}</div>
 <div class="legal" style="color:#0E5A2C;bottom:120px">Tasa referencial de las ${x.hh}; se actualiza cada hora. La final es la de superenvios.app al enviar.</div>`);
@@ -336,7 +349,7 @@ ${plusses([[960, 560, 90, "plusW", 10], [20, 990, 80, "plusL"]])}
 <div class="main">${pair(v, 120)}<div><b class="num">${rateTxt(x.Rs.CLVE)} Bs</b><small>por cada 1 CLP · Chile → Venezuela</small></div></div>
 <div class="sec"><div>${pair(co, 84)}<b class="num">${rateTxt(x.Rs.CLCO)} COP</b><small>por cada 1 CLP · a Colombia</small></div>
 <div>${pair(pe, 84)}<b class="num">${rateTxt(x.Rs.CLPE)} PEN</b><small>por cada 1 CLP · a Perú</small></div></div>
-<div class="foot"><span>Comisión del servicio incluida en la tasa · de 15 minutos a 3 horas</span>${pill("superenvios.app", "font-size:38px")}</div>`);
+<div class="foot"><span>Comisión del servicio incluida en la tasa · de 15 minutos a 2 horas</span>${pill("superenvios.app", "font-size:38px")}</div>`);
 };
 
 export const STORIES = { S01, S02, S03, S04, S05, S06, S07, S08, S09, S10 };

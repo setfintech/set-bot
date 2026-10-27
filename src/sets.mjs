@@ -1,6 +1,7 @@
 // sets.mjs — juegos de diseños por día de publicación. Cada juego = 10 historias (en orden de corredor) + 1 post de feed.
 // Orden de corredores de las 10 historias: CLVE, CLVE, CLPE, CLVE, CLCO, PEVE, CLVE, COVE, TODOS, CLVE.
 // 6 juegos fijos, uno por día de la semana (config.json → setsPorDia: lun E · mar F · mié A · jue B · vie C · sáb D), que se repiten cada semana.
+import "./tramos_pos.mjs"; // agrega los tramos de Chile → Venezuela a los diseños antes de armar los juegos
 import { STORIES, FEEDS } from "./disenos.mjs";
 import { STORIES_B } from "./disenos_b.mjs";
 import { STORIES_C, FEEDS_C } from "./disenos_c.mjs";

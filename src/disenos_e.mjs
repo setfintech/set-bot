@@ -46,7 +46,7 @@ export const E02 = (x) => { const c = CORR.CLVE, r = x.R.CLVE; return page(1080,
 <div class="mid"><small>NotiSET · Chile → Venezuela</small><b class="num">${rateTxt(x.Rs.CLVE)}</b><small>bolívares por cada 1 CLP</small>
 <div style="display:flex;gap:10px;margin-top:30px">${sqFlag("CL", 90)}${sqFlag("VE", 90)}</div></div>
 <div class="lt"><b>ÚLTIMA HORA:</b> con ${amtA(c, 100000)} tu familia recibe ${recv(c, r, 100000)}</div>
-<div class="tk">Comisión del servicio incluida en la tasa · de 15 min a 3 h</div></div></div>
+<div class="tk">Comisión del servicio incluida en la tasa · de 15 min a 2 h</div></div></div>
 ${foot(1380, "Envía en superenvios.app")}${legal(x.hh, "#9fc9ad", 150)}`); };
 
 // E03 · caja de encomienda (Chile → Perú)
@@ -149,7 +149,7 @@ const c09 = `.bg{position:absolute;inset:0;background:#3b2a1d}
 export const E09 = (x) => page(1080, 1920, c09, `<div class="bg"></div>
 <div class="menu"><h3>MENÚ DE HOY</h3><div class="sub">Tasas de las ${x.hh} · ${diaNombre(x.d)} ${fechaCorta(x.d)}</div>
 ${["CLVE", "CLPE", "CLCO", "PEVE", "COVE"].map((k) => { const c = CORR[k]; return `<div class="it"><span class="n">${sqFlag(c.a, 54)}${sqFlag(c.b, 54)} ${c.an} a ${c.bn}</span><span class="d"></span><span class="p num">${rateTxt(x.Rs[k])} ${c.ub}</span><small>por 1 ${c.ua}</small></div>`; }).join("")}
-<div style="text-align:center;font-size:28px;color:#8a6a35;margin-top:30px">Comisión del servicio incluida en la tasa<br>de 15 minutos a 3 horas</div></div>
+<div style="text-align:center;font-size:28px;color:#8a6a35;margin-top:30px">Comisión del servicio incluida en la tasa<br>de 15 minutos a 2 horas</div></div>
 ${foot(1460)}${legal(x.hh, "#d8c7a5", 150)}`);
 
 // E10 · atardecer: el día se acaba
@@ -178,7 +178,7 @@ ${plusses([[960, 250, 80, "plusW", 10], [20, 1240, 70, "plusL"]])}
 <div class="card"><div>${pair(c, 96)}<b class="num" style="margin-top:20px">${rateTxt(x.Rs.CLVE)}</b><small>Bs por cada 1 CLP · Chile → Venezuela</small></div>
 <div class="tb">${[...c.ej, 200000].map((n) => `<div><span>${amtA(c, n)}</span><b class="num" style="font-size:28px;display:inline;margin:0;color:#0E5A2C">${recv(c, r, n)}</b></div>`).join("")}</div></div>
 <div style="position:absolute;left:70px;right:70px;top:930px;font-size:44px;line-height:1.25">Arranca la semana enviándole a tu familia 💚</div>
-<div class="ft"><span>Comisión del servicio incluida en la tasa · de 15 minutos a 3 horas</span>${pill("superenvios.app", "font-size:36px")}</div>`); };
+<div class="ft"><span>Comisión del servicio incluida en la tasa · de 15 minutos a 2 horas</span>${pill("superenvios.app", "font-size:36px")}</div>`); };
 
 export const STORIES_E = { E01, E02, E03, E04, E05, E06, E07, E08, E09, E10 };
 export const FEEDS_E = { F5 };

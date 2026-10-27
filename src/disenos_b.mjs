@@ -45,7 +45,7 @@ export const B02 = (x) => { const c = CORR.CLVE, r = x.R.CLVE; return page(1080,
 <div class="board ch"><div class="t1">PIZARRA DE HOY · ${x.hh}</div><div class="t2">Chile → <b>Venezuela</b></div><div class="hr"></div>
 <div class="big num">${rateTxt(x.Rs.CLVE)} <small>Bs x 1 CLP</small></div><div class="hr"></div>
 <div class="ls">${[...c.ej, 200000].map((n) => `<div><span>${amtA(c, n)}</span><b>${recv(c, r, n)}</b></div>`).join("")}</div>
-<div class="note">Comisión del servicio incluida en la tasa ✔<br>De 15 minutos a 3 horas ✔</div></div>
+<div class="note">Comisión del servicio incluida en la tasa ✔<br>De 15 minutos a 2 horas ✔</div></div>
 ${foot(1700)}${legal(x.hh, "#f4f1e6", 60)}`); };
 
 // B03 · etiqueta de equipaje (Chile → Perú)
@@ -79,7 +79,7 @@ export const B04 = (x) => { const c = CORR.CLVE, r = x.R.CLVE; return page(1080,
 <div class="clock"><b>${x.hh}</b><span>${diaNombre(x.d)} ${fechaCorta(x.d)}</span></div>
 <div class="n" style="top:720px"><img src="assets/logos/iso_blanco.png"><div style="flex:1"><div class="t"><span>SÚPER ENVÍOS TODAY</span><span>ahora</span></div><div class="m">Tasa de las ${x.hh}: <b class="num">${unitLine(c, x.Rs.CLVE)}</b></div></div></div>
 <div class="n" style="top:960px"><img src="assets/logos/iso_blanco.png"><div style="flex:1"><div class="t"><span>SÚPER ENVÍOS TODAY</span><span>ahora</span></div><div class="m">Si envías ${amtA(c, 100000)}, tu familia recibe <b>${recv(c, r, 100000)}</b> 💚</div></div></div>
-<div class="n" style="top:1220px;opacity:.85"><img src="assets/logos/iso_blanco.png"><div style="flex:1"><div class="t"><span>SÚPER ENVÍOS TODAY</span><span>ahora</span></div><div class="m">Comisión del servicio incluida en la tasa. Se procesa de 15 min a 3 h.</div></div></div>
+<div class="n" style="top:1220px;opacity:.85"><img src="assets/logos/iso_blanco.png"><div style="flex:1"><div class="t"><span>SÚPER ENVÍOS TODAY</span><span>ahora</span></div><div class="m">Comisión del servicio incluida en la tasa. Se procesa de 15 min a 2 h.</div></div></div>
 ${foot(1500, "Envía en superenvios.app")}${legal(x.hh, "#fff", 140)}`); };
 
 // B05 · entrada de cine (Chile → Colombia)

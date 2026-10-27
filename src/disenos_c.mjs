@@ -62,7 +62,7 @@ ${plusses([[900, 1420, 100, "plus", 10]])}
 <div class="h">Línea directa a <b>Perú</b>, sin transbordos o escalas</div><div class="line"></div>
 <div class="st" style="top:540px"><i></i><div><b>Santiago</b><small>Envías ${amtA(c, 100000)} · ${x.hh}</small></div></div>
 <div class="st" style="top:760px"><i></i><div><b>Tasa del día</b><small class="num">${unitLine(c, x.Rs.CLPE)}</small></div></div>
-<div class="st" style="top:1340px"><i></i><div><b>Lima</b><small>De 15 minutos a 3 horas</small></div></div>
+<div class="st" style="top:1340px"><i></i><div><b>Lima</b><small>De 15 minutos a 2 horas</small></div></div>
 <div class="res"><small>Tu familia recibe</small><b class="num">${recv(c, r, 100000)}</b><small>Comisión del servicio incluida en la tasa</small></div>
 <div style="position:absolute;right:80px;top:540px;display:flex;gap:10px">${sqFlag("CL", 84)}${sqFlag("PE", 84)}</div>
 ${foot(1560)}${legal(x.hh, "#5c6a60", 150)}`); };
@@ -79,7 +79,7 @@ export const C04 = (x) => { const c = CORR.CLVE, r = x.R.CLVE; return page(1080,
 <div class="mast">TASA</div><div class="ed">TASA DEL ${fechaCorta(x.d).toUpperCase()}<br>${x.hh} · CHILE → VENEZUELA</div>
 ${person("2JfOT9e3uZg", "right:-80px;bottom:0;height:1250px")}
 <div class="hl"><small>LA TASA DE HOY</small><b class="num">${rateTxt(x.Rs.CLVE)} Bs</b><p>por cada 1 CLP.<br>Con ${amtA(c, 50000)} tu familia recibe ${recv(c, r, 50000)}.</p></div>
-<div class="tag">Comisión del servicio incluida en la tasa · de 15 min a 3 h</div>
+<div class="tag">Comisión del servicio incluida en la tasa · de 15 min a 2 h</div>
 ${foot(1320, "superenvios.app").replace("text-align:center", "text-align:left;padding-left:60px")}${legal(x.hh, "#0E5A2C", 140).replace('class="legal" style="', 'class="legal" style="right:470px;text-align:left;')}`); };
 
 // C05 · cafecito (Chile → Colombia)
@@ -111,7 +111,7 @@ export const C06 = (x) => { const c = CORR.PEVE, r = x.R.PEVE; return page(1080,
 <div class="sign"><div class="row"><div style="display:flex;gap:12px;align-items:center">${sqFlag("PE", 90)}<span style="font-size:60px">→</span>${sqFlag("VE", 90)}</div><span class="n">Ruta del día</span></div>
 <div class="row"><span class="n">VENEZUELA<small>desde Perú · ${x.hh}</small></span><span class="v num">${rateTxt(x.Rs.PEVE)} Bs</span></div>
 <div class="row"><span class="n">${amtA(c, 100)}<small>tu familia recibe</small></span><span class="v num">${recv(c, r, 100)}</span></div>
-<div class="row"><span class="n" style="font-size:34px">Llegada: de 15 min a 3 h</span><span style="font-size:60px">⬆</span></div></div>
+<div class="row"><span class="n" style="font-size:34px">Llegada: de 15 min a 2 h</span><span style="font-size:60px">⬆</span></div></div>
 ${foot(1580)}${legal(x.hh, "#fff", 150)}`); };
 
 // C07 · checklist antes de enviar (Chile → Venezuela)
@@ -129,7 +129,7 @@ ${plusses([[920, 1440, 100, "plus", 10]])}
 <div class="it"><i>✓</i><div><b>Revisa la tasa</b><small class="num">${unitLine(c, x.Rs.CLVE)}</small></div></div>
 <div class="it"><i>✓</i><div><b>Elige el monto</b><small>${amtA(c, 100000)} → ${recv(c, r, 100000)}</small></div></div>
 <div class="it"><i>✓</i><div><b>Agrega a tu destinatario</b><small>queda guardado para la próxima</small></div></div>
-<div class="it"><i>✓</i><div><b>Transfiere y adjunta el comprobante</b><small>de 15 minutos a 3 horas</small></div></div>
+<div class="it"><i>✓</i><div><b>Transfiere y adjunta el comprobante</b><small>de 15 minutos a 2 horas</small></div></div>
 </div>
 <div class="disc">Comisión del servicio incluida en la tasa</div>
 ${foot(1560, "Envía en superenvios.app")}${legal(x.hh, "#5c6a60", 150)}`); };
@@ -194,7 +194,7 @@ ${plusses([[930, 200, 90, "plusW", 10]])}
 <div class="k">Chile → Venezuela · 1 CLP =</div><div class="big num">${rateTxt(x.Rs.CLVE)}</div><div class="u">bolívares</div>
 <div class="ci"><img src="assets/people/YiMUmTMcN_c.png"></div>
 <div class="ej">${[...c.ej, 200000].map((n) => `<div><span>${amtA(c, n)}</span><b class="num">${recv(c, r, n)}</b></div>`).join("")}</div>
-<div class="ft"><span>Comisión del servicio incluida en la tasa · de 15 minutos a 3 horas</span>${pill("superenvios.app", "font-size:36px")}</div>`); };
+<div class="ft"><span>Comisión del servicio incluida en la tasa · de 15 minutos a 2 horas</span>${pill("superenvios.app", "font-size:36px")}</div>`); };
 
 export const STORIES_C = { C01, C02, C03, C04, C05, C06, C07, C08, C09, C10 };
 export const FEEDS_C = { F3 };

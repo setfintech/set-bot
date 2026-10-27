@@ -6,6 +6,7 @@ import path from "node:path";
 import { execSync } from "node:child_process";
 import { getAll, getAllSeries } from "./data.mjs";
 import { SETS, CORRIDOR_ORDER, listo } from "./sets.mjs";
+import { aplicarTramos } from "./tasa_set.mjs";
 import { rateTxt, fechaCorta } from "./disenos.mjs";
 import { renderPage, closeBrowser } from "./render.mjs";
 import { createPost, deletePost } from "./metricool.mjs";
@@ -60,8 +61,9 @@ function prune() {
 const feedCaption = (x, tipo) => [
   `Tasa de hoy · ${fechaCorta(dia)} · ${x.hh} 💚`, "",
   `Chile → Venezuela: 1 CLP = ${rateTxt(x.Rs.CLVE)} Bs`,
+  ...(x.T ? [`   Desde 250.000 CLP: ${rateTxt(x.T.t250)} Bs · Desde 500.000 CLP: ${rateTxt(x.T.t500)} Bs`] : []),
   ...(tipo === "tres" ? [`Chile → Colombia: 1 CLP = ${rateTxt(x.Rs.CLCO)} COP`, `Chile → Perú: 1 CLP = ${rateTxt(x.Rs.CLPE)} PEN`] : []), "",
-  "✅ Comisión del servicio incluida en la tasa: lo que ves es lo que es", "⏱️ Tu envío se procesa de 15 minutos a 3 horas", "",
+  "✅ Comisión del servicio incluida en la tasa: lo que ves es lo que es", "⏱️ Tu envío se procesa de 15 minutos a 2 horas", "",
   "👉 Envía en superenvios.app (link en el perfil)", "",
   "Tasa referencial del momento de publicación; se actualiza cada hora. La final es la que ves en superenvios.app al enviar.", "",
   "#SuperEnviosToday #TasaDelDía #Remesas #EnviarDinero #VenezolanosEnChile",
@@ -96,7 +98,8 @@ async function main() {
   const Rs = Object.fromEntries(Object.entries(all).map(([k, v]) => [k, v.raw]));
   const hh = all.CLVE.hh;
   const S = set === "F" || S0?.conGraficos ? await getAllSeries() : {}; // historial solo para el juego con gráficos
-  const x = { d: dia, hh, R, Rs, S, v: variacion };
+  const T = aplicarTramos(R, Rs); // Chile → Venezuela: 4 decimales y tramos de 250.000 / 500.000
+  const x = { d: dia, hh, R, Rs, S, T, v: variacion };
 
   const files = [];
   fs.mkdirSync("out", { recursive: true });
