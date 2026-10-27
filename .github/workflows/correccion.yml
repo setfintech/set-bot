@@ -11,8 +11,10 @@ on:
       diseno: { description: "Diseño (ej. S08)", required: true }
       cambio: { description: "Cambio pedido", required: true }
 
+# Un grupo por pieza: GitHub deja solo UNA corrida en espera por grupo y cancela las demás, así que con un grupo
+# común se perdían correcciones pedidas seguidas (pasó con F05). Los choques al guardar los cubre el pull --rebase.
 concurrency:
-  group: correccion
+  group: correccion-${{ github.event.client_payload.pieza || inputs.pieza }}
   cancel-in-progress: false
 
 permissions:
