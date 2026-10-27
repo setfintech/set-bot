@@ -165,14 +165,14 @@ ${foot(1440)}${legal(x.hh, "#5c6a60", 140)}`); };
 // F06 · histograma de variación hora a hora (Perú → Venezuela)
 const c06 = `.bg{position:absolute;inset:0;background:${TV.bg};color:#d1d4dc}
 .h{position:absolute;left:60px;right:60px;top:240px;font-size:58px;line-height:1.12;color:#fff}.h b{color:${TV.up}}
-.px{position:absolute;left:60px;top:420px;font-size:96px;font-family:Arial;font-weight:700;color:#fff}.px small{font-size:36px;color:${TV.txt};margin-left:10px}`;
+.px{position:absolute;left:60px;top:400px;font-size:140px;line-height:1.1;font-family:Arial;font-weight:700;color:#FCE27A;background:rgba(252,226,122,.12);border:4px solid #FCE27A;border-radius:28px;padding:6px 30px 10px}.px small{font-size:40px;color:#fff;margin-left:14px}`;
 export const F06 = (x) => { const s = last24(x.S.PEVE), a = vals(s), d = a.slice(1).map((v, i) => v - a[i]), m = Math.max(...d.map(Math.abs)) || 1;
   const W = 960, H = 640, bw = W / d.length, Y0 = 340, Y = escala(...rango(a), 300, 10);
   const bars = d.map((v, i) => `<rect x="${(i * bw + bw * 0.15).toFixed(1)}" y="${v >= 0 ? Y0 - v / m * 260 : Y0}" width="${(bw * 0.7).toFixed(1)}" height="${Math.max(2, Math.abs(v) / m * 260)}" fill="${pcol(v)}" rx="3"/>`).join("");
   return page(1080, 1920, c06, `<div class="bg"></div>
 <div class="h">Perú → Venezuela: <b>hora a hora</b></div>
 <div class="px num">${rateTxt(x.Rs.PEVE)}<small>Bs por 1 PEN · ${x.hh}</small></div>
-<svg style="position:absolute;left:60px;top:580px" width="${W}" height="${H + 60}" viewBox="0 0 ${W} ${H + 60}">
+<svg style="position:absolute;left:60px;top:620px" width="${W}" height="${H + 60}" viewBox="0 0 ${W} ${H + 60}">
 <line x1="0" x2="${W}" y1="${Y0}" y2="${Y0}" stroke="${TV.grid}" stroke-width="3"/>${bars}
 <text x="0" y="${Y0 - 280}" font-size="24" fill="${TV.txt}" font-family="Arial">Variación de cada hora vs. la anterior (Bs)</text>
 ${s.slice(1).map((p, i) => (i % 6 === 0 ? `<text x="${i * bw}" y="${H}" font-size="22" fill="${TV.txt}" font-family="Arial">${p.hh}</text>` : "")).join("")}</svg>
