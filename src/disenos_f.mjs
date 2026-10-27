@@ -155,7 +155,7 @@ export const F05 = (x) => { const s = last24(x.S.CLCO), a = vals(s), p = cambio2
   const tape = ["CLVE", "CLPE", "CLCO", "PEVE", "COVE"].map((k) => { const q = cambio24(x.S[k]); return `<span>${CORR[k].ua}/${CORR[k].ub} <b>${rateTxt(x.Rs[k])}</b> <b style="color:${pcol(q, "#8be28b", "#ff8a80")}">${pct(q)}</b></span>`; }).join("");
   const area = `M0,${Y(a[0])} ` + a.map((v, i) => `L${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(" ") + ` L1000,480 L0,480 Z`;
   return page(1080, 1920, c05, `<div class="bg"></div><div class="tape">${tape}</div>
-<div class="h">Así se movió hoy la tasa a <b>Colombia</b></div>
+<div class="h">Así se mueve hoy la tasa a <b>Colombia</b></div>
 <div class="px num">${rateTxt(x.Rs.CLCO)} <span style="font-size:44px">COP</span></div><div class="ch" style="color:${pcol(p, "#00913E", "#E0302B")}">${pct(p)} en 24 h · por cada 1 CLP</div>
 <svg class="ar" viewBox="0 0 1000 520"><defs><linearGradient id="gc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#003893" stop-opacity=".3"/><stop offset="1" stop-color="#003893" stop-opacity="0"/></linearGradient></defs>
 ${rejilla(1000, 480, 4, "#dfe7e2")}<path d="${area}" fill="url(#gc)"/>${linea(a, X, Y, "#003893", 5)}<circle cx="${X(a.length - 1)}" cy="${Y(a[a.length - 1])}" r="12" fill="#FCD116" stroke="#003893" stroke-width="5"/>${horasEje(s, X, 480, "#5c6a60", 6)}</svg>
